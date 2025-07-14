@@ -1,7 +1,11 @@
 package com.devtiago.i_manage_app.backend.entity;
 
 import com.devtiago.i_manage_app.backend.entity.enums.UserRole;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,9 +25,16 @@ import java.util.Set;
 public class User {
 
     @Id
+    @Column(name = "username", nullable = false)
+    @NotBlank(message = "username is required")
     private String username;
+    @Column(name = "password", nullable = false)
+    @NotBlank(message = "password is required")
     private String password;
+    @NotNull(message = "createdAt is required")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime createdAt;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime updatedAt;
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(
@@ -31,9 +42,12 @@ public class User {
             joinColumns = @JoinColumn(name = "user_username")
     )
     @Enumerated(EnumType.STRING)
+    @NotNull(message = "userRoles are required.")
     private Set<UserRole> userRoles;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "employee_id", referencedColumnName = "workerNo")
+    @JoinColumn(name = "employee_id", referencedColumnName = "worker_no")
+    @JsonManagedReference
+    @NotNull(message = "employee is required")
     private Employee employee;
 }

@@ -3,23 +3,51 @@ package com.devtiago.i_manage_app.backend.entity.dto;
 import com.devtiago.i_manage_app.backend.entity.User;
 import com.devtiago.i_manage_app.backend.entity.enums.Operation;
 import com.devtiago.i_manage_app.backend.entity.enums.Status;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record EmployeeDto(
-    Long workerNo,
-    String fullName,
-    String email,
-    String phoneNumber,
-    String recruitmentCompany,
-    Operation operation,
-    String department,
-    LocalDate birthdayDate,
-    int age,
-    String genre,
-    Status status,
-    LocalDate admissionDate,
-    LocalDateTime registryDate,
-    User user
+        @NotNull(message = "Worker Number is required")
+        @Min(value = 3000, message = "Worker Number must be at least 3000")
+        @Max(value = 100000, message = "Worker Number must be at most 100000")
+        Long workerNo,
+        @NotBlank(message = "Full name is required")
+        @Length(min = 10, max = 100, message = "Full name should be between 10 and 100 characters.")
+        String fullName,
+        @Length(min = 15, max = 60, message = "Email should be between 15 and 60 characters.")
+        @NotBlank(message = "Email is required")
+        String email,
+        @NotBlank(message = "Phone Number is required")
+        @Length(min = 9, max = 14, message = "Phone number should be between 9 and 14 characters.")
+        String phoneNumber,
+        @Length(min = 5, max = 20, message = "Recruitment company should be between 5 and 20 characters.")
+        @NotBlank(message = "Recruitment company is required.")
+        String recruitmentCompany,
+        @NotNull
+        Operation operation,
+        @NotBlank(message = "Department company is required.")
+        @Length(min = 10, max = 50, message = "Department should be between 10 and 50 characters.")
+        String department,
+        @NotNull
+        LocalDate birthdayDate,
+        @NotNull
+        int age,
+        @NotBlank(message = "Genre is required.")
+        String genre,
+        @NotNull(message = "Status is required")
+        Status status,
+        @NotNull(message = "AdmissionDate is required")
+        LocalDate admissionDate,
+        @NotNull(message = "RegistryDate is required")
+        @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+        LocalDateTime registryDate,
+        @NotNull(message = "User is required")
+        User user
 ) { }

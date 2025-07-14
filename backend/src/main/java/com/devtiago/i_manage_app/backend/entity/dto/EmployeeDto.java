@@ -47,6 +47,5 @@ public record EmployeeDto(
         @NotNull(message = "RegistryDate is required")
         @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
         LocalDateTime registryDate,
-        @NotNull(message = "User is required")
         User user
 ) { }

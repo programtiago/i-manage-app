@@ -1,8 +1,8 @@
-package com.devtiago.i_manage_app.backend.entity.controller;
+package com.devtiago.i_manage_app.backend.controller;
 
 import com.devtiago.i_manage_app.backend.entity.Employee;
 import com.devtiago.i_manage_app.backend.entity.dto.EmployeeDto;
-import com.devtiago.i_manage_app.backend.entity.service.EmployeeService;
+import com.devtiago.i_manage_app.backend.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

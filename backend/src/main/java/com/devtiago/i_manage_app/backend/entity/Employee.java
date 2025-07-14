@@ -1,8 +1,8 @@
 package com.devtiago.i_manage_app.backend.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.devtiago.i_manage_app.backend.entity.enums.Operation;
+import com.devtiago.i_manage_app.backend.entity.enums.Status;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,7 +41,8 @@ public class Employee {
      * Can exist multiple operations inside company environment
      * An employee can only be part of ONE operation
      */
-    private String operation;
+    @Enumerated(EnumType.STRING)
+    private Operation operation;
     private String department;
     private LocalDate birthdayDate;
     /**
@@ -49,6 +50,11 @@ public class Employee {
      */
     private int age;
     private String genre;
+    /**
+     * Current employment status of the employee (e.g., ACTIVE, INACTIVE, ON_LEAVE).
+     */
+    @Enumerated(EnumType.STRING)
+    private Status status;
     /**
      * Date when the employee joined the company.
      */

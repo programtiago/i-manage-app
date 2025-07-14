@@ -1,4 +1,4 @@
-package com.devtiago.i_manage_app.backend.entity.service;
+package com.devtiago.i_manage_app.backend.service;
 
 import com.devtiago.i_manage_app.backend.entity.Employee;
 import com.devtiago.i_manage_app.backend.entity.dto.EmployeeDto;

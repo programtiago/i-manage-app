@@ -14,7 +14,7 @@ public class EmployeeMapper {
         if (employeeDto == null) return null;
 
         return new Employee(employeeDto.workerNo(), employeeDto.fullName(), employeeDto.email(), employeeDto.phoneNumber(), employeeDto.recruitmentCompany(),
-                employeeDto.operation(), employeeDto.department(), employeeDto.birthdayDate(), employeeDto.age(), employeeDto.genre(), employeeDto.admissionDate(),
+                employeeDto.operation(), employeeDto.department(), employeeDto.birthdayDate(), employeeDto.age(), employeeDto.genre(), employeeDto.status(), employeeDto.admissionDate(),
                 employeeDto.registryDate());
     }
 
@@ -22,7 +22,7 @@ public class EmployeeMapper {
         if (employee == null) return null;
 
         return new EmployeeDto(employee.getWorkerNo(), employee.getFullName(), employee.getEmail(), employee.getPhoneNumber(), employee.getRecruitmentCompany(),
-                employee.getOperation(), employee.getDepartment(), employee.getBirthdayDate(), employee.getAge(), employee.getGenre(), employee.getAdmissionDate(),
+                employee.getOperation(), employee.getDepartment(), employee.getBirthdayDate(), employee.getAge(), employee.getGenre(), employee.getStatus(), employee.getAdmissionDate(),
                 employee.getRegistryDate());
     }
 

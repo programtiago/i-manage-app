@@ -9,6 +9,10 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents a system user responsible for authentication and access control.
+ * Stores credentials and audit timestamps.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

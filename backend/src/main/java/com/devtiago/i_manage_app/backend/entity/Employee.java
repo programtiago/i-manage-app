@@ -25,7 +25,7 @@ public class Employee {
      * Unique worker number (internal employee ID)
      */
     @Id
-    private String workerNo;
+    private Long workerNo;
     private String fullName;
     /**
      * Employee's corporate or personal email

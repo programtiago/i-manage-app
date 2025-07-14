@@ -1,5 +1,5 @@
 CREATE TABLE TB_EMPLOYEE (
-    worker_no VARCHAR(50) PRIMARY KEY,
+    worker_no BIGINT PRIMARY KEY,
     full_name VARCHAR(100) NOT NULL,
     email VARCHAR(100),
     phone_number VARCHAR(20),

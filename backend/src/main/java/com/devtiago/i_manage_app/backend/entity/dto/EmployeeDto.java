@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record EmployeeDto(
-    String workerNo,
+    Long workerNo,
     String fullName,
     String email,
     String phoneNumber,

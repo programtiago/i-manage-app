@@ -37,7 +37,6 @@ public record EmployeeDto(
         String department,
         @NotNull
         LocalDate birthdayDate,
-        @NotNull
         int age,
         @NotBlank(message = "Genre is required.")
         String genre,

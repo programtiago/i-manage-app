@@ -77,7 +77,6 @@ public class Employee {
      * Current age (its computed depending on birthdayDate).
      */
     @Column(name = "age", nullable = false)
-    @NotNull
     private int age;
     @Column(name = "genre", nullable = false, length = 9)
     @NotBlank(message = "Genre is required.")

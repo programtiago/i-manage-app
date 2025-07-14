@@ -19,7 +19,7 @@ VALUES
             'ACTIVE', '2020-06-01', CURRENT_TIMESTAMP),
 
 (30002, 'Tiago Filipe Ferreira da Silva', 'programtiago@gmail.com', '932345321', 'Intern',
-        'OPERATION_Y', 'Tecnologias da Informação', '1996-02-05', 29, 'MASCULINO',
+        'OPERATION_Y', 'IT', '1996-02-05', 29, 'MASCULINO',
         'ACTIVE', '2021-10-23', CURRENT_TIMESTAMP
 );
 

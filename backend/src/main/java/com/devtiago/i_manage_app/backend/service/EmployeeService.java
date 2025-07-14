@@ -23,6 +23,10 @@ public class EmployeeService {
                 .collect(Collectors.toList());
     }
     public EmployeeDto create(Employee employee){
-        return employeeMapper.toDto(employeeRepository.save(employee));
+        EmployeeDto empDto = employeeMapper.createEmployeeDto(employee);
+
+        employeeRepository.save(employeeMapper.toEntity(empDto));
+
+        return empDto;
     }
 }

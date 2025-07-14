@@ -4,10 +4,7 @@ import com.devtiago.i_manage_app.backend.entity.Employee;
 import com.devtiago.i_manage_app.backend.entity.dto.EmployeeDto;
 import com.devtiago.i_manage_app.backend.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,7 +20,7 @@ public class EmployeeController {
         return employeeService.getAllEmployees();
     }
     @PostMapping
-    public EmployeeDto create(Employee employee){
+    public EmployeeDto create(@RequestBody Employee employee){
         return employeeService.create(employee);
     }
 }

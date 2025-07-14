@@ -2,8 +2,11 @@ package com.devtiago.i_manage_app.backend.utils.mapper;
 
 import com.devtiago.i_manage_app.backend.entity.Employee;
 import com.devtiago.i_manage_app.backend.entity.dto.EmployeeDto;
+import com.devtiago.i_manage_app.backend.entity.enums.Status;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +27,14 @@ public class EmployeeMapper {
         return new EmployeeDto(employee.getWorkerNo(), employee.getFullName(), employee.getEmail(), employee.getPhoneNumber(), employee.getRecruitmentCompany(),
                 employee.getOperation(), employee.getDepartment(), employee.getBirthdayDate(), employee.getAge(), employee.getGenre(), employee.getStatus(), employee.getAdmissionDate(),
                 employee.getRegistryDate());
+    }
+
+    public EmployeeDto createEmployeeDto(Employee employee){
+        if (employee == null) return null;
+
+        return new EmployeeDto(employee.getWorkerNo(), employee.getFullName(), employee.getEmail(), employee.getPhoneNumber(), employee.getRecruitmentCompany(), employee.getOperation(),
+                employee.getDepartment(), employee.getBirthdayDate(), employee.getAge(), employee.getGenre(), Status.ACTIVE, employee.getAdmissionDate(),
+                LocalDateTime.now());
     }
 
     public List<EmployeeDto> toListDto(List<Employee> employees){

@@ -18,7 +18,7 @@ public class EmployeeMapper {
 
         return new Employee(employeeDto.workerNo(), employeeDto.fullName(), employeeDto.email(), employeeDto.phoneNumber(), employeeDto.recruitmentCompany(),
                 employeeDto.operation(), employeeDto.department(), employeeDto.birthdayDate(), employeeDto.age(), employeeDto.genre(), employeeDto.status(), employeeDto.admissionDate(),
-                employeeDto.registryDate());
+                employeeDto.registryDate(), employeeDto.user());
     }
 
     public EmployeeDto toDto(Employee employee){
@@ -26,7 +26,7 @@ public class EmployeeMapper {
 
         return new EmployeeDto(employee.getWorkerNo(), employee.getFullName(), employee.getEmail(), employee.getPhoneNumber(), employee.getRecruitmentCompany(),
                 employee.getOperation(), employee.getDepartment(), employee.getBirthdayDate(), employee.getAge(), employee.getGenre(), employee.getStatus(), employee.getAdmissionDate(),
-                employee.getRegistryDate());
+                employee.getRegistryDate(), employee.getUser());
     }
 
     public EmployeeDto createEmployeeDto(Employee employee){
@@ -34,7 +34,7 @@ public class EmployeeMapper {
 
         return new EmployeeDto(employee.getWorkerNo(), employee.getFullName(), employee.getEmail(), employee.getPhoneNumber(), employee.getRecruitmentCompany(), employee.getOperation(),
                 employee.getDepartment(), employee.getBirthdayDate(), employee.getAge(), employee.getGenre(), Status.ACTIVE, employee.getAdmissionDate(),
-                LocalDateTime.now());
+                LocalDateTime.now(), employee.getUser());
     }
 
     public List<EmployeeDto> toListDto(List<Employee> employees){

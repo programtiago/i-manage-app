@@ -17,19 +17,19 @@ public class UserMapper {
     public User toEntity(UserDto userDto){
         if (userDto == null) return null;
 
-        return new User(userDto.username(), userDto.password(), userDto.createdAt(), userDto.updatedAt());
+        return new User(userDto.username(), userDto.password(), userDto.createdAt(), userDto.updatedAt(), userDto.userRoles(), userDto.employee());
     }
 
     public UserDto toDto(User user){
         if (user == null) return null;
 
-        return new UserDto(user.getUsername(), user.getPassword(), user.getCreatedAt(), user.getUpdatedAt());
+        return new UserDto(user.getUsername(), user.getPassword(), user.getCreatedAt(), user.getUpdatedAt(), user.getUserRoles(), user.getEmployee());
     }
 
     public UserDto newUser(User user){
         if (user == null) return null;
 
-        return new UserDto(user.getUsername(), user.getPassword(), LocalDateTime.now(), user.getUpdatedAt());
+        return new UserDto(user.getUsername(), user.getPassword(), LocalDateTime.now(), user.getUpdatedAt(), user.getUserRoles(), user.getEmployee());
     }
 
     public List<UserDto> toListDto(List<User> users){

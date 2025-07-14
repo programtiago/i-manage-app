@@ -63,4 +63,7 @@ public class Employee {
      * Timestamp of when the employee was registered in the system.
      */
     private LocalDateTime registryDate;
+
+    @OneToOne(mappedBy = "employee")
+    private User user;
 }

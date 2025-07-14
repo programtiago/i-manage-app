@@ -1,5 +1,6 @@
 package com.devtiago.i_manage_app.backend.entity.dto;
 
+import com.devtiago.i_manage_app.backend.entity.User;
 import com.devtiago.i_manage_app.backend.entity.enums.Operation;
 import com.devtiago.i_manage_app.backend.entity.enums.Status;
 
@@ -19,5 +20,6 @@ public record EmployeeDto(
     String genre,
     Status status,
     LocalDate admissionDate,
-    LocalDateTime registryDate
+    LocalDateTime registryDate,
+    User user
 ) { }

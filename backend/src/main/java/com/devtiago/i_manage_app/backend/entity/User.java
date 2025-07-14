@@ -25,6 +25,12 @@ public class User {
     private String password;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(
+            name = "TB_USER_ROLES",
+            joinColumns = @JoinColumn(name = "user_username")
+    )
+    @Enumerated(EnumType.STRING)
     private Set<UserRole> userRoles;
 
     @OneToOne(cascade = CascadeType.ALL)

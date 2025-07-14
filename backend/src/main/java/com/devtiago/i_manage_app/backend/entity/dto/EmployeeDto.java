@@ -7,11 +7,13 @@ public record EmployeeDto(
     String workerNo,
     String fullName,
     String email,
+    String phoneNumber,
     String recruitmentCompany,
     String operation,
     String department,
     LocalDate birthdayDate,
     int age,
+    String genre,
     LocalDate admissionDate,
     LocalDateTime registryDate
 ) { }

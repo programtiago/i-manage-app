@@ -5,6 +5,7 @@ import com.devtiago.i_manage_app.backend.entity.User;
 import com.devtiago.i_manage_app.backend.entity.dto.EmployeeDto;
 import com.devtiago.i_manage_app.backend.entity.enums.Status;
 import com.devtiago.i_manage_app.backend.entity.enums.UserRole;
+import com.devtiago.i_manage_app.backend.exceptions.EmployeeException;
 import com.devtiago.i_manage_app.backend.repository.EmployeeRepository;
 import com.devtiago.i_manage_app.backend.repository.UserRepository;
 import com.devtiago.i_manage_app.backend.utils.PasswordUserGenerator;
@@ -35,25 +36,39 @@ public class EmployeeService {
                 .map(employeeMapper::toDto)
                 .collect(Collectors.toList());
     }
-    public EmployeeDto createWithUser(EmployeeDto employeeDto){
-        Employee employee = employeeMapper.toEntity(employeeDto);
-        employee.setRegistryDate(LocalDateTime.now());
-        employee.setStatus(Status.ACTIVE);
+    public EmployeeDto createWithUser(Employee employee){
+        if (employeeRepository.existsByWorkerNo(employee.getWorkerNo())){
+            throw new EmployeeException("The workerNo " + employee.getWorkerNo() +  " is already in use.");
+        }
 
-        employeeRepository.save(employee);
+        if (employeeRepository.existsByPhoneNumber(employee.getPhoneNumber())){
+            throw new EmployeeException("The phoneNumber " + employee.getPhoneNumber() +  " is already in use.");
+        }
 
-        User userEmp = new User();
-        userEmp.setUsername(String.valueOf(employee.getWorkerNo()));
-        userEmp.setPassword(PasswordUserGenerator.generateFromName(employee.getFullName()));
+        Employee storedEmp;
 
-        Set<UserRole> userRoles = Collections.singleton(RoleAssign.resolveRole(employee.getDepartment()));
-        userEmp.setUserRoles(userRoles);
-        userEmp.setEmployee(employee);
-        userEmp.setEmployee(employee);
-        userEmp.setCreatedAt(LocalDateTime.now());
+        try {
+            storedEmp = employeeRepository.save(employee);
+        }catch (Exception ex){
+            throw new EmployeeException("Failed to save employee: " + ex.getMessage());
+        }
 
-        userRepository.save(userEmp);
+        try {
+            User userEmp = new User();
+            userEmp.setUsername(storedEmp.getWorkerNo().toString());
+            userEmp.setPassword(PasswordUserGenerator.generateFromName(storedEmp.getFullName()));
+            userEmp.setCreatedAt(LocalDateTime.now());
 
-        return employeeMapper.toDto(employee);
+            Set<UserRole> userRoles = Collections.singleton(
+                    RoleAssign.resolveRole(storedEmp.getDepartment()));
+
+            userEmp.setUserRoles(userRoles);
+            userEmp.setEmployee(storedEmp);
+
+            userRepository.save(userEmp);
+        }catch (Exception ex){
+        }
+
+        return employeeMapper.toDto(storedEmp);
     }
 }

@@ -22,7 +22,7 @@ public class PasswordUserGenerator {
         String[] parts = fullName.trim().split("\\s+");
         for (String part : parts){
             if (!part.isEmpty()){
-                initials.append(Character.toUpperCase(part.charAt(0)));
+                initials.append(Character.toLowerCase(part.charAt(0)));
             }
         }
 

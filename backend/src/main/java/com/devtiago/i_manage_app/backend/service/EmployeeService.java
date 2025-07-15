@@ -66,39 +66,9 @@ public class EmployeeService {
         //Map object Dto to an Employee entity
         Employee newEmployee = employeeMapper.newUserToEntity(employeeDto);
 
-        //Validates workerNo and phoneNumber
-        if (employeeRepository.existsByWorkerNo(employeeDto.workerNo())){
-            throw new EmployeeException("The workerNo " + employeeDto.workerNo() +  " is already in use.");
-        }
+        validateUniqueEmployeeFields(employeeDto);
 
-        if (employeeRepository.existsByPhoneNumber(employeeDto.phoneNumber())){
-            throw new EmployeeException("The phoneNumber " + employeeDto.phoneNumber() +  " is already in use.");
-        }
-
-        //tries to save the entity in the repo
-        try {
-            employeeRepository.save(newEmployee);
-        }catch (Exception ex){
-            throw new EmployeeException("Failed to save employee: " + ex.getMessage());
-        }
-
-        //tries to instantiate a new entity User
-        try {
-            User userEmp = new User();
-            userEmp.setUsername(newEmployee.getWorkerNo().toString());
-            userEmp.setPassword(PasswordUserGenerator.generateFromName(newEmployee.getFullName()));
-            userEmp.setCreatedAt(LocalDateTime.now());
-
-            Set<UserRole> userRoles = Collections.singleton(
-                    RoleAssign.resolveRole(newEmployee.getDepartment()));
-
-            userEmp.setUserRoles(userRoles);
-            userEmp.setEmployee(newEmployee);
-
-            userRepository.save(userEmp);
-        }catch (Exception ex){
-            throw new UserException("Something went wrong while creating user." + ex.getMessage());
-        }
+        saveEmployee(newEmployee);
 
         return employeeMapper.toDto(newEmployee);
     }
@@ -138,5 +108,28 @@ public class EmployeeService {
 
         employeeRepository.save(employee);
         userRepository.save(userEmp);
+    }
+
+    private void validateUniqueEmployeeFields(EmployeeDto employeeDto){
+        //Validates workerNo and phoneNumber
+        if (employeeRepository.existsByWorkerNo(employeeDto.workerNo())){
+            throw new EmployeeException("The workerNo " + employeeDto.workerNo() +  " is already in use.");
+        }
+
+        if (employeeRepository.existsByPhoneNumber(employeeDto.phoneNumber())){
+            throw new EmployeeException("The phoneNumber " + employeeDto.phoneNumber() +  " is already in use.");
+        }
+
+        if (employeeRepository.existsByEmail(employeeDto.email())){
+            throw new EmployeeException("The email " + employeeDto.email() +  " is already in use.");
+        }
+    }
+
+    private void saveEmployee(Employee employee){
+        try {
+            employeeRepository.save(employee);
+        }catch (Exception ex){
+            throw new EmployeeException("Failed to save employee: " + ex.getMessage());
+        }
     }
 }

@@ -100,7 +100,7 @@ public class Employee {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime registryDate;
 
-    @OneToOne(mappedBy = "employee")
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
     @JsonManagedReference
     private User user;
 

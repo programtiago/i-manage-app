@@ -45,10 +45,9 @@ public class User {
     @NotNull(message = "userRoles are required.")
     private Set<UserRole> userRoles;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "employee_id", referencedColumnName = "worker_no")
     @JsonBackReference
-    @NotNull(message = "employee is required")
     private Employee employee;
 
     public User(String username, String password, LocalDateTime createdAt, LocalDateTime updatedAt, Set<UserRole> userRoles) {

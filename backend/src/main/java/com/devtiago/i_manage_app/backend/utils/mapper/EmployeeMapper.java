@@ -58,6 +58,8 @@ public class EmployeeMapper {
     public Employee newUserToEntity(EmployeeDto employeeDto){
         if (employeeDto == null) return null;
 
+        System.out.println("Employee DTO: " + employeeDto);
+
         User user = new User();
 
         Set<UserRole> userRoles = Collections.singleton(
@@ -72,7 +74,8 @@ public class EmployeeMapper {
                 employeeDto.operation(), employeeDto.department(), employeeDto.birthdayDate(), employeeDto.age(), employeeDto.genre(), Status.ACTIVE, employeeDto.admissionDate(),
                 LocalDateTime.now(), user);
 
-        user.setEmployee(employee);
+        System.out.println("Saving Employee: " + employee);
+        System.out.println("Saving User: " + user);
 
         return employee;
     }

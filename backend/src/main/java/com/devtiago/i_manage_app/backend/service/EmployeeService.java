@@ -42,13 +42,7 @@ public class EmployeeService {
     public EmployeeDto create(EmployeeDto employeeDto){
         Employee newEmployee = employeeMapper.toEntity(employeeDto);
 
-        if (employeeRepository.existsByWorkerNo(employeeDto.workerNo())){
-            throw new EmployeeException("The workerNo " + employeeDto.workerNo() +  " is already in use.");
-        }
-
-        if (employeeRepository.existsByPhoneNumber(employeeDto.phoneNumber())){
-            throw new EmployeeException("The phoneNumber " + employeeDto.phoneNumber() +  " is already in use.");
-        }
+        validateUniqueEmployeeFields(employeeDto);
 
         try {
             newEmployee.setStatus(Status.ACTIVE);
@@ -68,7 +62,7 @@ public class EmployeeService {
 
         validateUniqueEmployeeFields(employeeDto);
 
-        saveEmployee(newEmployee);
+        saveEmployeeAndUser(newEmployee);
 
         return employeeMapper.toDto(newEmployee);
     }
@@ -125,9 +119,10 @@ public class EmployeeService {
         }
     }
 
-    private void saveEmployee(Employee employee){
+    private void saveEmployeeAndUser(Employee employee){
         try {
             employeeRepository.save(employee);
+            userRepository.save(employee.getUser());
         }catch (Exception ex){
             throw new EmployeeException("Failed to save employee: " + ex.getMessage());
         }

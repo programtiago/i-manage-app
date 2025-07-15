@@ -28,4 +28,9 @@ public class EmployeeController {
     public EmployeeDto update(@RequestBody @Valid EmployeeDto employee, @PathVariable Long workerNo){
         return employeeService.update(employee, workerNo);
     }
+
+    @GetMapping("/{workerNo}")
+    public EmployeeDto findByWorkerNo(@PathVariable Long workerNo){
+        return employeeService.findByWorkerNo(workerNo);
+    }
 }

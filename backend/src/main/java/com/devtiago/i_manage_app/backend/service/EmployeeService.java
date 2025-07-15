@@ -97,4 +97,11 @@ public class EmployeeService {
 
         return employeeMapper.toDto(updatedEmp);
     }
+
+    public EmployeeDto findByWorkerNo(Long workerNo) {
+        Employee employee = employeeRepository.findById(workerNo)
+                .orElseThrow(() -> new EmployeeException("Employee not found with worker number " + workerNo));
+
+        return employeeMapper.toDto(employee);
+    }
 }

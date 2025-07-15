@@ -3,6 +3,7 @@ package com.devtiago.i_manage_app.backend.service;
 import com.devtiago.i_manage_app.backend.entity.Employee;
 import com.devtiago.i_manage_app.backend.entity.User;
 import com.devtiago.i_manage_app.backend.entity.dto.EmployeeDto;
+import com.devtiago.i_manage_app.backend.entity.enums.Status;
 import com.devtiago.i_manage_app.backend.entity.enums.UserRole;
 import com.devtiago.i_manage_app.backend.exceptions.EmployeeException;
 import com.devtiago.i_manage_app.backend.exceptions.UserException;
@@ -103,5 +104,13 @@ public class EmployeeService {
                 .orElseThrow(() -> new EmployeeException("Employee not found with worker number " + workerNo));
 
         return employeeMapper.toDto(employee);
+    }
+
+    public void deactivateEmployee(Long workerNo) {
+        Employee employee = employeeRepository.findById(workerNo)
+                .orElseThrow(() -> new EmployeeException("Employee not found with worker number " + workerNo));
+
+        employee.setStatus(Status.INACTIVE);
+        employeeRepository.save(employee);
     }
 }

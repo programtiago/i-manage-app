@@ -33,4 +33,9 @@ public class EmployeeController {
     public EmployeeDto findByWorkerNo(@PathVariable Long workerNo){
         return employeeService.findByWorkerNo(workerNo);
     }
+
+    @PutMapping("deactivate/{workerNo}")
+    public void deactivate(@PathVariable Long workerNo){
+        employeeService.deactivateEmployee(workerNo);
+    }
 }

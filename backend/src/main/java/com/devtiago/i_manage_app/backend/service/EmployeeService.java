@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -111,6 +112,11 @@ public class EmployeeService {
                 .orElseThrow(() -> new EmployeeException("Employee not found with worker number " + workerNo));
 
         employee.setStatus(Status.INACTIVE);
+
+        User userEmp = employee.getUser();
+        userEmp.getUserRoles().clear();
+
         employeeRepository.save(employee);
+        userRepository.save(userEmp);
     }
 }

@@ -24,7 +24,6 @@ import java.util.stream.Collectors;
 @Component
 public class EmployeeMapper {
 
-
     public Employee toEntity(EmployeeDto employeeDto){
         if (employeeDto == null) return null;
 

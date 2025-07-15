@@ -12,6 +12,7 @@ import com.devtiago.i_manage_app.backend.utils.PasswordUserGenerator;
 import com.devtiago.i_manage_app.backend.utils.RoleAssign;
 import com.devtiago.i_manage_app.backend.utils.mapper.EmployeeMapper;
 import com.devtiago.i_manage_app.backend.utils.mapper.UserMapper;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -78,5 +79,22 @@ public class EmployeeService {
         }
 
         return employeeMapper.toDto(newEmployee);
+    }
+
+    public EmployeeDto update(EmployeeDto employeeDto, Long workerNo){
+        Employee existingEmp = employeeRepository.findById(workerNo)
+                .orElseThrow(() -> new EmployeeException("Employee not found with worker number " + workerNo));
+
+        existingEmp.setFullName(employeeDto.fullName());
+        existingEmp.setPhoneNumber(employeeDto.phoneNumber());
+        existingEmp.setRecruitmentCompany(employeeDto.recruitmentCompany());
+        existingEmp.setDepartment(employeeDto.department());
+        existingEmp.setBirthdayDate(employeeDto.birthdayDate());
+        existingEmp.setEmail(employeeDto.email());
+        existingEmp.setStatus(employeeDto.status());
+
+        Employee updatedEmp = employeeRepository.save(existingEmp);
+
+        return employeeMapper.toDto(updatedEmp);
     }
 }

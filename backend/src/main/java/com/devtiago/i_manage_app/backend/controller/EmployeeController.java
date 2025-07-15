@@ -23,4 +23,9 @@ public class EmployeeController {
     public EmployeeDto create(@RequestBody @Valid EmployeeDto employee){
         return employeeService.createWithUser(employee);
     }
+
+    @PutMapping("/{workerNo}")
+    public EmployeeDto update(@RequestBody @Valid EmployeeDto employee, @PathVariable Long workerNo){
+        return employeeService.update(employee, workerNo);
+    }
 }

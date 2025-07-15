@@ -1,8 +1,8 @@
 package com.devtiago.i_manage_app.backend.entity;
 
 import com.devtiago.i_manage_app.backend.entity.enums.UserRole;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -47,7 +47,15 @@ public class User {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id", referencedColumnName = "worker_no")
-    @JsonManagedReference
+    @JsonBackReference
     @NotNull(message = "employee is required")
     private Employee employee;
+
+    public User(String username, String password, LocalDateTime createdAt, LocalDateTime updatedAt, Set<UserRole> userRoles) {
+        this.username = username;
+        this.password = password;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.userRoles = userRoles;
+    }
 }

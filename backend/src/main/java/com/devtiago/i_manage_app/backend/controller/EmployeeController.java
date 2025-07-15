@@ -19,9 +19,15 @@ public class EmployeeController {
     public List<EmployeeDto> findAll(){
         return employeeService.getAllEmployees();
     }
-    @PostMapping
-    public EmployeeDto create(@RequestBody @Valid EmployeeDto employee){
+
+    @PostMapping("/create-with-user")
+    public EmployeeDto createWithUser(@RequestBody @Valid EmployeeDto employee){
         return employeeService.createWithUser(employee);
+    }
+
+    @PostMapping("/create")
+    public EmployeeDto create(@RequestBody @Valid EmployeeDto employee){
+        return employeeService.create(employee);
     }
 
     @PutMapping("/{workerNo}")

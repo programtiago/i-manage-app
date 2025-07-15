@@ -21,7 +21,7 @@ public record UserDto(
         @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
         LocalDateTime updatedAt,
         @NotNull(message = "userRoles are required.")
-        Set<UserRole> userRoles,
-        @NotNull(message = "employee is required.")
-        Employee employee
+        Set<UserRole> userRoles
+        /*,@NotNull(message = "employee is required.")
+        Employee employee*/
 ) { }

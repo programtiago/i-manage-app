@@ -45,5 +45,5 @@ public record EmployeeDto(
         LocalDate admissionDate,
         @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
         LocalDateTime registryDate,
-        User user
+        UserDto user
 ) { }

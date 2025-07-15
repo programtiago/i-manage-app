@@ -2,8 +2,8 @@ package com.devtiago.i_manage_app.backend.entity;
 
 import com.devtiago.i_manage_app.backend.entity.enums.Operation;
 import com.devtiago.i_manage_app.backend.entity.enums.Status;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -101,17 +101,23 @@ public class Employee {
     private LocalDateTime registryDate;
 
     @OneToOne(mappedBy = "employee")
-    @JsonBackReference
+    @JsonManagedReference
     private User user;
 
-    @PrePersist
-    public void setDefaults() {
-        if (this.registryDate == null) {
-            this.registryDate = LocalDateTime.now();
-        }
-
-        if (this.status == null) {
-            this.status = Status.ACTIVE;
-        }
+    public Employee(Long workerNo, String fullName, String email, String phoneNumber, String recruitmentCompany, Operation operation,
+                    String department, LocalDate birthdayDate, int age, String genre, Status status, LocalDate admissionDate, LocalDateTime registryDate) {
+        this.workerNo = workerNo;
+        this.fullName = fullName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.recruitmentCompany = recruitmentCompany;
+        this.operation = operation;
+        this.department = department;
+        this.birthdayDate = birthdayDate;
+        this.age = age;
+        this.genre = genre;
+        this.status = status;
+        this.admissionDate = admissionDate;
+        this.registryDate = registryDate;
     }
 }

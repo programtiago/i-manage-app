@@ -13,14 +13,12 @@ import com.devtiago.i_manage_app.backend.utils.PasswordUserGenerator;
 import com.devtiago.i_manage_app.backend.utils.RoleAssign;
 import com.devtiago.i_manage_app.backend.utils.mapper.EmployeeMapper;
 import com.devtiago.i_manage_app.backend.utils.mapper.UserMapper;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -40,6 +38,28 @@ public class EmployeeService {
                 .map(employeeMapper::toDto)
                 .collect(Collectors.toList());
     }
+
+    public EmployeeDto create(EmployeeDto employeeDto){
+        Employee newEmployee = employeeMapper.toEntity(employeeDto);
+
+        if (employeeRepository.existsByWorkerNo(employeeDto.workerNo())){
+            throw new EmployeeException("The workerNo " + employeeDto.workerNo() +  " is already in use.");
+        }
+
+        if (employeeRepository.existsByPhoneNumber(employeeDto.phoneNumber())){
+            throw new EmployeeException("The phoneNumber " + employeeDto.phoneNumber() +  " is already in use.");
+        }
+
+        try {
+            newEmployee.setStatus(Status.ACTIVE);
+            employeeRepository.save(newEmployee);
+        }catch (Exception ex){
+            throw new EmployeeException("Failed to save employee: " + ex.getMessage());
+        }
+
+        return employeeMapper.toDto(newEmployee);
+    }
+
     @Transactional
     public EmployeeDto createWithUser(EmployeeDto employeeDto){
 

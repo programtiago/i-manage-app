@@ -103,4 +103,15 @@ public class Employee {
     @OneToOne(mappedBy = "employee")
     @JsonBackReference
     private User user;
+
+    @PrePersist
+    public void setDefaults() {
+        if (this.registryDate == null) {
+            this.registryDate = LocalDateTime.now();
+        }
+
+        if (this.status == null) {
+            this.status = Status.ACTIVE;
+        }
+    }
 }

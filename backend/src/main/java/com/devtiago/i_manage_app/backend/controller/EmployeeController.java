@@ -1,6 +1,5 @@
 package com.devtiago.i_manage_app.backend.controller;
 
-import com.devtiago.i_manage_app.backend.entity.Employee;
 import com.devtiago.i_manage_app.backend.entity.dto.EmployeeDto;
 import com.devtiago.i_manage_app.backend.service.EmployeeService;
 import jakarta.validation.Valid;
@@ -21,7 +20,7 @@ public class EmployeeController {
         return employeeService.getAllEmployees();
     }
     @PostMapping
-    public EmployeeDto create(@RequestBody @Valid Employee employee){
+    public EmployeeDto create(@RequestBody @Valid EmployeeDto employee){
         return employeeService.createWithUser(employee);
     }
 }

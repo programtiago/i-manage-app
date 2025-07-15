@@ -3,15 +3,16 @@ package com.devtiago.i_manage_app.backend.service;
 import com.devtiago.i_manage_app.backend.entity.Employee;
 import com.devtiago.i_manage_app.backend.entity.User;
 import com.devtiago.i_manage_app.backend.entity.dto.EmployeeDto;
-import com.devtiago.i_manage_app.backend.entity.enums.Status;
 import com.devtiago.i_manage_app.backend.entity.enums.UserRole;
 import com.devtiago.i_manage_app.backend.exceptions.EmployeeException;
+import com.devtiago.i_manage_app.backend.exceptions.UserException;
 import com.devtiago.i_manage_app.backend.repository.EmployeeRepository;
 import com.devtiago.i_manage_app.backend.repository.UserRepository;
 import com.devtiago.i_manage_app.backend.utils.PasswordUserGenerator;
 import com.devtiago.i_manage_app.backend.utils.RoleAssign;
 import com.devtiago.i_manage_app.backend.utils.mapper.EmployeeMapper;
 import com.devtiago.i_manage_app.backend.utils.mapper.UserMapper;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -36,39 +37,46 @@ public class EmployeeService {
                 .map(employeeMapper::toDto)
                 .collect(Collectors.toList());
     }
-    public EmployeeDto createWithUser(Employee employee){
-        if (employeeRepository.existsByWorkerNo(employee.getWorkerNo())){
-            throw new EmployeeException("The workerNo " + employee.getWorkerNo() +  " is already in use.");
+    @Transactional
+    public EmployeeDto createWithUser(EmployeeDto employeeDto){
+
+        //Map object Dto to an Employee entity
+        Employee newEmployee = employeeMapper.newUserToEntity(employeeDto);
+
+        //Validates workerNo and phoneNumber
+        if (employeeRepository.existsByWorkerNo(employeeDto.workerNo())){
+            throw new EmployeeException("The workerNo " + employeeDto.workerNo() +  " is already in use.");
         }
 
-        if (employeeRepository.existsByPhoneNumber(employee.getPhoneNumber())){
-            throw new EmployeeException("The phoneNumber " + employee.getPhoneNumber() +  " is already in use.");
+        if (employeeRepository.existsByPhoneNumber(employeeDto.phoneNumber())){
+            throw new EmployeeException("The phoneNumber " + employeeDto.phoneNumber() +  " is already in use.");
         }
 
-        Employee storedEmp;
-
+        //tries to save the entity in the repo
         try {
-            storedEmp = employeeRepository.save(employee);
+            employeeRepository.save(newEmployee);
         }catch (Exception ex){
             throw new EmployeeException("Failed to save employee: " + ex.getMessage());
         }
 
+        //tries to instantiate a new entity User
         try {
             User userEmp = new User();
-            userEmp.setUsername(storedEmp.getWorkerNo().toString());
-            userEmp.setPassword(PasswordUserGenerator.generateFromName(storedEmp.getFullName()));
+            userEmp.setUsername(newEmployee.getWorkerNo().toString());
+            userEmp.setPassword(PasswordUserGenerator.generateFromName(newEmployee.getFullName()));
             userEmp.setCreatedAt(LocalDateTime.now());
 
             Set<UserRole> userRoles = Collections.singleton(
-                    RoleAssign.resolveRole(storedEmp.getDepartment()));
+                    RoleAssign.resolveRole(newEmployee.getDepartment()));
 
             userEmp.setUserRoles(userRoles);
-            userEmp.setEmployee(storedEmp);
+            userEmp.setEmployee(newEmployee);
 
             userRepository.save(userEmp);
         }catch (Exception ex){
+            throw new UserException("Something went wrong while creating user." + ex.getMessage());
         }
 
-        return employeeMapper.toDto(storedEmp);
+        return employeeMapper.toDto(newEmployee);
     }
 }

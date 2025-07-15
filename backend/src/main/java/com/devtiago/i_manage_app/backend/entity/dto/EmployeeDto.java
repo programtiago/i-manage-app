@@ -40,11 +40,9 @@ public record EmployeeDto(
         int age,
         @NotBlank(message = "Genre is required.")
         String genre,
-        @NotNull(message = "Status is required")
         Status status,
         @NotNull(message = "AdmissionDate is required")
         LocalDate admissionDate,
-        @NotNull(message = "RegistryDate is required")
         @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
         LocalDateTime registryDate,
         User user

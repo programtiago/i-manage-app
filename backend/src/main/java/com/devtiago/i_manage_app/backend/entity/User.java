@@ -45,9 +45,7 @@ public class User {
     @NotNull(message = "userRoles are required.")
     private Set<UserRole> userRoles;
 
-    @OneToOne
-    @JoinColumn(name = "employee_id", referencedColumnName = "worker_no")
-    @JsonBackReference
+    @OneToOne(mappedBy = "user")
     private Employee employee;
 
     public User(String username, String password, LocalDateTime createdAt, LocalDateTime updatedAt, Set<UserRole> userRoles) {

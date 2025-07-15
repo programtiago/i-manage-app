@@ -100,8 +100,8 @@ public class Employee {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime registryDate;
 
-    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Employee(Long workerNo, String fullName, String email, String phoneNumber, String recruitmentCompany, Operation operation,

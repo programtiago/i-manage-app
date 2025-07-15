@@ -11,15 +11,16 @@ INSERT INTO TB_EMPLOYEE (
     genre,
     status,
     admission_date,
-    registry_date
+    registry_date,
+    user_id
 )
 VALUES
 (30001, 'Ana Beatriz Silva', 'ana.silva@gmail.com', '965462341', 'Synergie',
             'OPERATION_X', 'Recursos Humanos', '1990-04-12', 35, 'FEMALE',
-            'ACTIVE', '2020-06-01', CURRENT_TIMESTAMP),
+            'ACTIVE', '2020-06-01', CURRENT_TIMESTAMP, 30001),
 
 (30002, 'Tiago Filipe Ferreira da Silva', 'programtiago@gmail.com', '932345321', 'Intern',
         'OPERATION_Y', 'Tecnologias de Informação', '1996-02-05', 29, 'MASCULINO',
-        'ACTIVE', '2021-10-23', CURRENT_TIMESTAMP
+        'ACTIVE', '2021-10-23', CURRENT_TIMESTAMP, 30002
 );
 

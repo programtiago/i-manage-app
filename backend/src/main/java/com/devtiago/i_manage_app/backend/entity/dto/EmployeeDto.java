@@ -1,6 +1,5 @@
 package com.devtiago.i_manage_app.backend.entity.dto;
 
-import com.devtiago.i_manage_app.backend.entity.User;
 import com.devtiago.i_manage_app.backend.entity.enums.Operation;
 import com.devtiago.i_manage_app.backend.entity.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;

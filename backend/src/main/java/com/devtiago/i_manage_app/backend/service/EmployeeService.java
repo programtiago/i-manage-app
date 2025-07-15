@@ -5,20 +5,29 @@ import com.devtiago.i_manage_app.backend.entity.User;
 import com.devtiago.i_manage_app.backend.entity.dto.EmployeeDto;
 import com.devtiago.i_manage_app.backend.entity.enums.Status;
 import com.devtiago.i_manage_app.backend.exceptions.EmployeeException;
+import com.devtiago.i_manage_app.backend.exceptions.UserException;
 import com.devtiago.i_manage_app.backend.repository.EmployeeRepository;
 import com.devtiago.i_manage_app.backend.repository.UserRepository;
+import com.devtiago.i_manage_app.backend.utils.PasswordUserGenerator;
+import com.devtiago.i_manage_app.backend.utils.RoleAssign;
 import com.devtiago.i_manage_app.backend.utils.mapper.EmployeeMapper;
 import com.devtiago.i_manage_app.backend.utils.mapper.UserMapper;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class EmployeeService {
+
+    private static final Logger logger = LoggerFactory.getLogger(EmployeeService.class);
 
     private final EmployeeRepository employeeRepository;
     private final UserRepository userRepository;
@@ -49,16 +58,53 @@ public class EmployeeService {
 
     @Transactional
     public EmployeeDto createWithUser(EmployeeDto employeeDto){
-
-        //Map object Dto to an Employee entity
-        Employee newEmployee = employeeMapper.newUserToEntity(employeeDto);
+        /*
+        Employee newEmployee = employeeMapper.toEntity(employeeDto);
 
         validateUniqueEmployeeFields(employeeDto);
 
+        try{
+            newEmployee.setRegistryDate(LocalDateTime.now());
+            newEmployee.setStatus(Status.ACTIVE);
+
+            User newUserEmp = new User();
+
+            newUserEmp.setUsername(employeeDto.workerNo().toString());
+            newUserEmp.setPassword(PasswordUserGenerator.generateFromName(employeeDto.fullName()));
+            newUserEmp.setCreatedAt(LocalDateTime.now());
+            newUserEmp.setUserRoles(Collections.singleton(RoleAssign.resolveRole(employeeDto.department())));
+
+            userRepository.save(newUserEmp);
+
+            saveEmployee(newEmployee);
+        }catch (Exception ex){
+            throw new EmployeeException("Failed to save employee: " + ex.getMessage());
+        }
+
+        logger.info("Created Employee: {}", newEmployee);
+
+        return employeeMapper.toDto(newEmployee);
+         */
+
+        User newUserEmp = new User();
+        newUserEmp.setUsername(employeeDto.workerNo().toString());
+        newUserEmp.setPassword(PasswordUserGenerator.generateFromName(employeeDto.fullName()));
+        newUserEmp.setCreatedAt(LocalDateTime.now());
+        newUserEmp.setUserRoles(Collections.singleton(RoleAssign.resolveRole(employeeDto.department())));
+
+        userRepository.save(newUserEmp);
+
+        validateUniqueEmployeeFields(employeeDto);
+
+        Employee newEmployee = employeeMapper.toEntity(employeeDto);
+        newEmployee.setRegistryDate(LocalDateTime.now());
+        newEmployee.setStatus(Status.ACTIVE);
+
+        newEmployee.setUser(newUserEmp);
+
         saveEmployee(newEmployee);
 
-        System.out.println("User: " + newEmployee.getUser());
-
+        logger.info("Created Employee: {}", newEmployee);
         return employeeMapper.toDto(newEmployee);
     }
 

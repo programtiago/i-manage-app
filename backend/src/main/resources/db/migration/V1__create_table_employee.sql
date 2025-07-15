@@ -11,5 +11,6 @@ CREATE TABLE TB_EMPLOYEE (
     genre VARCHAR(20),
     status VARCHAR(50),
     admission_date DATE,
-    registry_date TIMESTAMP
-)
+    registry_date TIMESTAMP,
+    user_id BIGINT
+);

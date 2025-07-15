@@ -3,6 +3,6 @@ INSERT INTO TB_USER_ROLES (
     user_roles
 )
 VALUES
-('ASILVA', 'RH'),
-('TSILVA', 'IT'),
-('TSILVA', 'ADMIN')
+(30001, 'RH'),
+(30002, 'IT'),
+(30002, 'ADMIN')

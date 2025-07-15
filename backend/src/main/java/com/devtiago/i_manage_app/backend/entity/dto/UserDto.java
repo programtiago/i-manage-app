@@ -1,6 +1,5 @@
 package com.devtiago.i_manage_app.backend.entity.dto;
 
-import com.devtiago.i_manage_app.backend.entity.Employee;
 import com.devtiago.i_manage_app.backend.entity.enums.UserRole;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
@@ -22,6 +21,4 @@ public record UserDto(
         LocalDateTime updatedAt,
         @NotNull(message = "userRoles are required.")
         Set<UserRole> userRoles
-        /*,@NotNull(message = "employee is required.")
-        Employee employee*/
 ) { }

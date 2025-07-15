@@ -6,16 +6,11 @@ import com.devtiago.i_manage_app.backend.entity.dto.EmployeeDto;
 import com.devtiago.i_manage_app.backend.entity.dto.UserDto;
 import com.devtiago.i_manage_app.backend.entity.enums.Status;
 import com.devtiago.i_manage_app.backend.entity.enums.UserRole;
-import com.devtiago.i_manage_app.backend.repository.UserRepository;
-import com.devtiago.i_manage_app.backend.utils.PasswordUserGenerator;
-import com.devtiago.i_manage_app.backend.utils.RoleAssign;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -34,7 +29,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class EmployeeMapper {
 
-    private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     public Employee toEntity(EmployeeDto employeeDto){
         if (employeeDto == null) return null;
@@ -53,31 +48,6 @@ public class EmployeeMapper {
         return new Employee(employeeDto.workerNo(), employeeDto.fullName(), employeeDto.email(), employeeDto.phoneNumber(), employeeDto.recruitmentCompany(),
                 employeeDto.operation(), employeeDto.department(), employeeDto.birthdayDate(), employeeDto.age(), employeeDto.genre(), employeeDto.status(), employeeDto.admissionDate(),
                 employeeDto.registryDate(), user);
-    }
-
-    public Employee newUserToEntity(EmployeeDto employeeDto){
-        if (employeeDto == null) return null;
-
-        System.out.println("Employee DTO: " + employeeDto);
-
-        User user = new User();
-
-        Set<UserRole> userRoles = Collections.singleton(
-                RoleAssign.resolveRole(employeeDto.department()));
-
-        user.setUsername(employeeDto.workerNo().toString());
-        user.setPassword(PasswordUserGenerator.generateFromName(employeeDto.fullName()));
-        user.setCreatedAt(LocalDateTime.now());
-        user.setUserRoles(userRoles);
-
-        Employee employee = new Employee(employeeDto.workerNo(), employeeDto.fullName(), employeeDto.email(), employeeDto.phoneNumber(), employeeDto.recruitmentCompany(),
-                employeeDto.operation(), employeeDto.department(), employeeDto.birthdayDate(), employeeDto.age(), employeeDto.genre(), Status.ACTIVE, employeeDto.admissionDate(),
-                LocalDateTime.now(), user);
-
-        System.out.println("Saving Employee: " + employee);
-        System.out.println("Saving User: " + user);
-
-        return employee;
     }
 
     public EmployeeDto toDto(Employee employee){

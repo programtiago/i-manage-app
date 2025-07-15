@@ -35,30 +35,25 @@ public class EmployeeService {
                 .map(employeeMapper::toDto)
                 .collect(Collectors.toList());
     }
-    public EmployeeDto create(Employee employee){
-        EmployeeDto empDto = employeeMapper.createEmployeeDto(employee);
+    public EmployeeDto createWithUser(EmployeeDto employeeDto){
+        Employee employee = employeeMapper.toEntity(employeeDto);
+        employee.setRegistryDate(LocalDateTime.now());
+        employee.setStatus(Status.ACTIVE);
 
-        if (employee.getRegistryDate() == null) {
-            employee.setRegistryDate(LocalDateTime.now());
-        }
-
-        if (employee.getStatus() == null) {
-            employee.setStatus(Status.ACTIVE);
-        }
+        employeeRepository.save(employee);
 
         User userEmp = new User();
-        userEmp.setUsername(String.valueOf(empDto.workerNo()));
-        userEmp.setPassword(PasswordUserGenerator.generateFromName(empDto.fullName()));
+        userEmp.setUsername(String.valueOf(employee.getWorkerNo()));
+        userEmp.setPassword(PasswordUserGenerator.generateFromName(employee.getFullName()));
 
-        Set<UserRole> userRoles = Collections.singleton(RoleAssign.resolveRole(empDto.department()));
+        Set<UserRole> userRoles = Collections.singleton(RoleAssign.resolveRole(employee.getDepartment()));
         userEmp.setUserRoles(userRoles);
         userEmp.setEmployee(employee);
+        userEmp.setEmployee(employee);
+        userEmp.setCreatedAt(LocalDateTime.now());
 
-        userMapper.newUser(userEmp);
-
-        employeeRepository.save(employeeMapper.toEntity(empDto));
         userRepository.save(userEmp);
 
-        return empDto;
+        return employeeMapper.toDto(employee);
     }
 }

@@ -3,7 +3,6 @@ package com.devtiago.i_manage_app.backend.utils;
 import com.devtiago.i_manage_app.backend.entity.enums.UserRole;
 
 import java.util.Map;
-
 public class RoleAssign {
 
     private static final Map<String, UserRole> DEPARTMENT_ROLE_MAP = Map.of(
@@ -11,7 +10,6 @@ public class RoleAssign {
             "Produção", UserRole.PROD,
             "Administração", UserRole.ADMIN,
             "Tecnologias de Informação", UserRole.IT
-
     );
 
     /**

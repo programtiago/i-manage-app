@@ -42,7 +42,7 @@ public class EmployeeMapper {
                 employee.getRegistryDate(), employee.getUser());
     }
 
-    public EmployeeDto createEmployeeDto(Employee employee){
+    public EmployeeDto createEmployeeWithUser(Employee employee){
         if (employee == null) return null;
 
         return new EmployeeDto(employee.getWorkerNo(), employee.getFullName(), employee.getEmail(), employee.getPhoneNumber(), employee.getRecruitmentCompany(), employee.getOperation(),

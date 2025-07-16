@@ -27,7 +27,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/create")
-    public EmployeeDto create(@RequestBody @Valid EmployeeDto employee){
+    public FullEmployeeDto create(@RequestBody @Valid EmployeeDto employee){
         return employeeService.create(employee);
     }
 

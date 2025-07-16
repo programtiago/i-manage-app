@@ -44,19 +44,24 @@ public class EmployeeService {
                 .collect(Collectors.toList());
     }
 
-    public EmployeeDto create(EmployeeDto employeeDto){
+    public FullEmployeeDto create(EmployeeDto employeeDto){
+        int age = calculateAge(employeeDto.birthdayDate());
+
         Employee newEmployee = employeeMapper.toEntity(employeeDto);
 
         validateUniqueEmployeeFields(employeeDto);
 
         try {
             newEmployee.setStatus(Status.ACTIVE);
-            employeeRepository.save(newEmployee);
+            newEmployee.setRegistryDate(LocalDateTime.now());
+            newEmployee.setAge(age);
+
+            saveEmployee(newEmployee);
         }catch (Exception ex){
             throw new EmployeeException("Failed to save employee: " + ex.getMessage());
         }
 
-        return employeeMapper.toDto(newEmployee);
+        return employeeMapper.toFullDto(newEmployee);
     }
 
     @Transactional

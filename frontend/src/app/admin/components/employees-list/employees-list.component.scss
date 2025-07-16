@@ -4,13 +4,40 @@
     display: block;
 }
 
-.mat-table {
-    overflow: auto;
+mat-table {
     max-height: 600px;
+}
+
+.mat-mdc-table {
+    background-color: #2c2c2c;
+
+    .mat-mdc-header-row {
+        background-color: #3a3a3a;
+        font-weight: bold;
+    }
+
+    .mat-mdc-header-cell {
+        color: #ffffff;
+        border-bottom: 1px solid #555;
+        padding: 12px;
+    }
 }
 
 .mat-mdc-header-row {
     position: sticky;
     top: 0;
     z-index: 1;
+}
+
+mat-row {
+    background-color: #2c2c2c;
+}
+
+mat-cell {
+    color: #f1f1f1;
+}
+
+mat-row:hover {
+    background-color: #424242;
+    cursor: pointer;
 }

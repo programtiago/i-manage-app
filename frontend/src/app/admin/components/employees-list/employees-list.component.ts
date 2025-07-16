@@ -11,9 +11,7 @@ export class EmployeesListComponent {
   @Input() employees: Employee[] = [];
 
   readonly displayedColumns: string[] = ['fullName', 'email', 'contact', 'recruitmentCompany', 'operation', 'department', 'birthdayDate', 
-      'age', 'genre', 'status', 'admissionDate', 'registryDate'];
+    'genre', 'status', 'admissionDate', 'registryDate'];
 
-  constructor(){
-    console.log(this.employees)
-  }
+  constructor(){}
 }

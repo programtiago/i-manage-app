@@ -1,6 +1,11 @@
 mat-card {
-    width: 100%;
+    max-width: 95%;
     margin: 2em auto;
+}
+
+mat-toolbar {
+    background-color: black;
+    color: white;
 }
 
 .loading-spinner {

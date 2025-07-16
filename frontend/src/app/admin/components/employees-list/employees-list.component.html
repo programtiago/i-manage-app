@@ -1,64 +1,66 @@
-<mat-table [dataSource]="employees">
-    <ng-container matColumnDef="fullName">
-        <mat-header-cell *matHeaderCellDef>Full Name</mat-header-cell>
-        <mat-cell *matCellDef="let employee">{{ employee.fullName }}</mat-cell>
-    </ng-container>
+<div class="table-container">
+    <mat-table [dataSource]="employees">
+        <ng-container matColumnDef="fullName">
+            <mat-header-cell *matHeaderCellDef>Full Name</mat-header-cell>
+            <mat-cell *matCellDef="let employee">{{ employee.fullName }}</mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="email">
-        <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
-        <mat-cell *matCellDef="let employee">{{ employee.email }}</mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+            <mat-cell *matCellDef="let employee">{{ employee.email }}</mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="contact">
-        <mat-header-cell *matHeaderCellDef>Contact</mat-header-cell>
-        <mat-cell *matCellDef="let employee">{{ employee.contact }}</mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="contact">
+            <mat-header-cell *matHeaderCellDef>Contact</mat-header-cell>
+            <mat-cell *matCellDef="let employee">{{ employee.phoneNumber }}</mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="recruitmentCompany">
-        <mat-header-cell *matHeaderCellDef>Recruitment</mat-header-cell>
-        <mat-cell *matCellDef="let employee">{{ employee.recruitmentCompany }}</mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="recruitmentCompany">
+            <mat-header-cell *matHeaderCellDef>Recruitment</mat-header-cell>
+            <mat-cell *matCellDef="let employee">{{ employee.recruitmentCompany }}</mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="operation">
-        <mat-header-cell *matHeaderCellDef>Operation</mat-header-cell>
-        <mat-cell *matCellDef="let employee">{{ employee.operation }}</mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="operation">
+            <mat-header-cell *matHeaderCellDef>Operation</mat-header-cell>
+            <mat-cell *matCellDef="let employee">{{ employee.operation }}</mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="department">
-        <mat-header-cell *matHeaderCellDef>Department</mat-header-cell>
-        <mat-cell *matCellDef="let employee">{{ employee.department }}</mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="department">
+            <mat-header-cell *matHeaderCellDef>Department</mat-header-cell>
+            <mat-cell *matCellDef="let employee">{{ employee.department }}</mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="birthdayDate">
-        <mat-header-cell *matHeaderCellDef>BirthdayDate</mat-header-cell>
-        <mat-cell *matCellDef="let employee">{{ employee.birthdayDate }}</mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="birthdayDate">
+            <mat-header-cell *matHeaderCellDef>BirthdayDate</mat-header-cell>
+            <mat-cell *matCellDef="let employee">{{ employee.birthdayDate }}</mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="age">
-        <mat-header-cell *matHeaderCellDef>Age</mat-header-cell>
-        <mat-cell *matCellDef="let employee">{{ employee.age }}</mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="age">
+            <mat-header-cell *matHeaderCellDef>Age</mat-header-cell>
+            <mat-cell *matCellDef="let employee">{{ employee.age }}</mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="genre">
-        <mat-header-cell *matHeaderCellDef>Genre</mat-header-cell>
-        <mat-cell *matCellDef="let employee">{{ employee.genre }}</mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="genre">
+            <mat-header-cell *matHeaderCellDef>Genre</mat-header-cell>
+            <mat-cell *matCellDef="let employee">{{ employee.genre }}</mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="status">
-        <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
-        <mat-cell *matCellDef="let employee">{{ employee.status }}</mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+            <mat-cell *matCellDef="let employee">{{ employee.status }}</mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="admissionDate">
-        <mat-header-cell *matHeaderCellDef>Admission Date</mat-header-cell>
-        <mat-cell *matCellDef="let employee">{{ employee.admissionDate }}</mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="admissionDate">
+            <mat-header-cell *matHeaderCellDef>Admission Date</mat-header-cell>
+            <mat-cell *matCellDef="let employee">{{ employee.admissionDate }}</mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="registryDate">
-        <mat-header-cell *matHeaderCellDef>Registry Date</mat-header-cell>
-        <mat-cell *matCellDef="let employee">{{ employee.registryDate }}</mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="registryDate">
+            <mat-header-cell *matHeaderCellDef>Registry Date</mat-header-cell>
+            <mat-cell *matCellDef="let employee">{{ employee.registryDate }}</mat-cell>
+        </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-</mat-table>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+</div>

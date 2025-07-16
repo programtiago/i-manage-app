@@ -1,7 +1,6 @@
 package com.devtiago.i_manage_app.backend.entity;
 
 import com.devtiago.i_manage_app.backend.entity.enums.UserRole;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

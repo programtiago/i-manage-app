@@ -3,7 +3,6 @@ package com.devtiago.i_manage_app.backend.entity;
 import com.devtiago.i_manage_app.backend.entity.enums.Operation;
 import com.devtiago.i_manage_app.backend.entity.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

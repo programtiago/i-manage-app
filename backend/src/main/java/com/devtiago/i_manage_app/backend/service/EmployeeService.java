@@ -58,33 +58,6 @@ public class EmployeeService {
 
     @Transactional
     public EmployeeDto createWithUser(EmployeeDto employeeDto){
-        /*
-        Employee newEmployee = employeeMapper.toEntity(employeeDto);
-
-        validateUniqueEmployeeFields(employeeDto);
-
-        try{
-            newEmployee.setRegistryDate(LocalDateTime.now());
-            newEmployee.setStatus(Status.ACTIVE);
-
-            User newUserEmp = new User();
-
-            newUserEmp.setUsername(employeeDto.workerNo().toString());
-            newUserEmp.setPassword(PasswordUserGenerator.generateFromName(employeeDto.fullName()));
-            newUserEmp.setCreatedAt(LocalDateTime.now());
-            newUserEmp.setUserRoles(Collections.singleton(RoleAssign.resolveRole(employeeDto.department())));
-
-            userRepository.save(newUserEmp);
-
-            saveEmployee(newEmployee);
-        }catch (Exception ex){
-            throw new EmployeeException("Failed to save employee: " + ex.getMessage());
-        }
-
-        logger.info("Created Employee: {}", newEmployee);
-
-        return employeeMapper.toDto(newEmployee);
-         */
 
         User newUserEmp = new User();
         newUserEmp.setUsername(employeeDto.workerNo().toString());

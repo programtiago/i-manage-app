@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Employee } from '../../../model/Employee';
 
 @Component({
   selector: 'app-employees-list',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class EmployeesListComponent {
 
+  @Input() employees: Employee[] = [];
+
+  readonly displayedColumns: string[] = ['fullName', 'email', 'contact', 'recruitmentCompany', 'operation', 'department', 'birthdayDate', 
+      'age', 'genre', 'status', 'admissionDate', 'registryDate'];
+
+  constructor(){
+    console.log(this.employees)
+  }
 }

@@ -1,1 +1,16 @@
-<p>employees works!</p>
+<mat-card>
+    <mat-toolbar>Active Employees</mat-toolbar>
+
+    <div class="mat-elevation-z8">
+        <app-employees-list
+            *ngIf="employees$ | async as employees; else loading"
+            [employees]="employees">
+        </app-employees-list>
+    </div>
+
+    <ng-template #loading>
+        <div class="loading-spinner">
+            <mat-spinner></mat-spinner>
+        </div>
+    </ng-template>
+</mat-card>

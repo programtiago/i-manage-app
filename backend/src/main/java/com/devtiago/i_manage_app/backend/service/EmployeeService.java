@@ -6,7 +6,6 @@ import com.devtiago.i_manage_app.backend.entity.dto.EmployeeDto;
 import com.devtiago.i_manage_app.backend.entity.dto.FullEmployeeDto;
 import com.devtiago.i_manage_app.backend.entity.enums.Status;
 import com.devtiago.i_manage_app.backend.exceptions.EmployeeException;
-import com.devtiago.i_manage_app.backend.exceptions.UserException;
 import com.devtiago.i_manage_app.backend.repository.EmployeeRepository;
 import com.devtiago.i_manage_app.backend.repository.UserRepository;
 import com.devtiago.i_manage_app.backend.utils.PasswordUserGenerator;

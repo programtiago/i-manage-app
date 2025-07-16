@@ -2,7 +2,6 @@ package com.devtiago.i_manage_app.backend.entity;
 
 import com.devtiago.i_manage_app.backend.entity.enums.Operation;
 import com.devtiago.i_manage_app.backend.entity.enums.Status;
-import com.devtiago.i_manage_app.backend.validators.ValidAgeEmployee;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;

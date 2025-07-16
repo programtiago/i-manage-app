@@ -1,7 +1,7 @@
 <mat-card>
     <mat-toolbar>Active Employees</mat-toolbar>
 
-    <div class="mat-elevation-z8 column-flex">
+    <div class="mat-elevation-z8">
         <app-employees-list
             *ngIf="employees$ | async as employees; else loading"
             [employees]="employees">

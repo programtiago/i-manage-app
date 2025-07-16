@@ -1,7 +1,7 @@
 package com.devtiago.i_manage_app.backend.controller;
 
-import com.devtiago.i_manage_app.backend.entity.Employee;
 import com.devtiago.i_manage_app.backend.entity.dto.EmployeeDto;
+import com.devtiago.i_manage_app.backend.entity.dto.FullEmployeeDto;
 import com.devtiago.i_manage_app.backend.service.EmployeeService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -17,12 +17,12 @@ public class EmployeeController {
     private final EmployeeService employeeService;
 
     @GetMapping
-    public List<EmployeeDto> findAll(){
+    public List<FullEmployeeDto> findAll(){
         return employeeService.getAllEmployees();
     }
 
     @PostMapping("/create-with-user")
-    public EmployeeDto createWithUser(@RequestBody @Valid EmployeeDto employee){
+    public FullEmployeeDto createWithUser(@RequestBody @Valid EmployeeDto employee){
         return employeeService.createWithUser(employee);
     }
 

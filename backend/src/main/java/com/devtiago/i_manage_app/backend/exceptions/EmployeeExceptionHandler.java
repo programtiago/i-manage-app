@@ -1,6 +1,7 @@
 package com.devtiago.i_manage_app.backend.exceptions;
 
 import com.devtiago.i_manage_app.backend.controller.EmployeeController;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -35,5 +36,18 @@ public class EmployeeExceptionHandler {
         );
 
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    public ResponseEntity<ErrorResponse> handleAgeValidation(DataIntegrityViolationException ex){
+        String message = ex.getMessage();
+
+        ErrorResponse errorResponse = new ErrorResponse(
+                message,
+                LocalDateTime.now(),
+                "AgeException",
+                HttpStatus.NOT_ACCEPTABLE.value()
+        );
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_ACCEPTABLE);
     }
 }

@@ -12,7 +12,7 @@ import org.hibernate.validator.constraints.Length;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public record EmployeeDto(
+public record FullEmployeeDto (
         @NotNull(message = "Worker Number is required")
         @Min(value = 3000, message = "Worker Number must be at least 3000")
         @Max(value = 100000, message = "Worker Number must be at most 100000")
@@ -36,6 +36,7 @@ public record EmployeeDto(
         String department,
         @NotNull
         LocalDate birthdayDate,
+        int age,
         @NotBlank(message = "Genre is required.")
         String genre,
         Status status,
@@ -44,4 +45,5 @@ public record EmployeeDto(
         @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
         LocalDateTime registryDate,
         UserDto user
-) { }
+){
+}

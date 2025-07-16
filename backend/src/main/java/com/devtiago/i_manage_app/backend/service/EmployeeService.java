@@ -3,6 +3,7 @@ package com.devtiago.i_manage_app.backend.service;
 import com.devtiago.i_manage_app.backend.entity.Employee;
 import com.devtiago.i_manage_app.backend.entity.User;
 import com.devtiago.i_manage_app.backend.entity.dto.EmployeeDto;
+import com.devtiago.i_manage_app.backend.entity.dto.FullEmployeeDto;
 import com.devtiago.i_manage_app.backend.entity.enums.Status;
 import com.devtiago.i_manage_app.backend.exceptions.EmployeeException;
 import com.devtiago.i_manage_app.backend.exceptions.UserException;
@@ -18,7 +19,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,9 +38,9 @@ public class EmployeeService {
     private final UserMapper userMapper;
     private final EmployeeMapper employeeMapper;
 
-    public List<EmployeeDto> getAllEmployees() {
+    public List<FullEmployeeDto> getAllEmployees() {
         return employeeRepository.findAll().stream()
-                .map(employeeMapper::toDto)
+                .map(employeeMapper::toFullDto)
                 .collect(Collectors.toList());
     }
 
@@ -57,7 +60,8 @@ public class EmployeeService {
     }
 
     @Transactional
-    public EmployeeDto createWithUser(EmployeeDto employeeDto){
+    public FullEmployeeDto createWithUser(EmployeeDto employeeDto){
+        int age = calculateAge(employeeDto.birthdayDate());
 
         User newUserEmp = new User();
         newUserEmp.setUsername(employeeDto.workerNo().toString());
@@ -70,15 +74,24 @@ public class EmployeeService {
         validateUniqueEmployeeFields(employeeDto);
 
         Employee newEmployee = employeeMapper.toEntity(employeeDto);
+
         newEmployee.setRegistryDate(LocalDateTime.now());
         newEmployee.setStatus(Status.ACTIVE);
-
         newEmployee.setUser(newUserEmp);
+
+        newEmployee.setAge(age);
+
+        if (newEmployee.getAge() < 18 || age > 67){
+            throw new EmployeeException("Age must be between 18 and 67");
+        }
+
+        logger.info("Creating employee: " + newEmployee);
 
         saveEmployee(newEmployee);
 
         logger.info("Created Employee: {}", newEmployee);
-        return employeeMapper.toDto(newEmployee);
+
+        return employeeMapper.toFullDto(newEmployee);
     }
 
     public EmployeeDto update(EmployeeDto employeeDto, Long workerNo){
@@ -139,5 +152,12 @@ public class EmployeeService {
         }catch (Exception ex){
             throw new EmployeeException("Failed to save employee: " + ex.getMessage());
         }
+    }
+
+    private int calculateAge(LocalDate birthdayDate){
+        if (birthdayDate == null){
+            throw new IllegalArgumentException("BirthdayDate is required");
+        }
+        return Period.between(birthdayDate, LocalDate.now()).getYears();
     }
 }

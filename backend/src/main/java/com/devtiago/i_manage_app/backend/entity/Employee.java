@@ -2,6 +2,7 @@ package com.devtiago.i_manage_app.backend.entity;
 
 import com.devtiago.i_manage_app.backend.entity.enums.Operation;
 import com.devtiago.i_manage_app.backend.entity.enums.Status;
+import com.devtiago.i_manage_app.backend.validators.ValidAgeEmployee;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
@@ -118,5 +119,21 @@ public class Employee {
         this.status = status;
         this.admissionDate = admissionDate;
         this.registryDate = registryDate;
+    }
+
+    public Employee(Long workerNo, String fullName, String email, String phoneNumber, String recruitmentCompany, Operation operation, String department, LocalDate birthdayDate, String genre, Status status, LocalDate admissionDate, LocalDateTime registryDate, User user) {
+        this.workerNo = workerNo;
+        this.fullName = fullName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.recruitmentCompany = recruitmentCompany;
+        this.operation = operation;
+        this.department = department;
+        this.birthdayDate = birthdayDate;
+        this.genre = genre;
+        this.status = status;
+        this.admissionDate = admissionDate;
+        this.registryDate = registryDate;
+        this.user = user;
     }
 }

@@ -6,10 +6,10 @@ import java.util.Map;
 public class RoleAssign {
 
     private static final Map<String, UserRole> DEPARTMENT_ROLE_MAP = Map.of(
-            "Recursos Humanos", UserRole.RH,
-            "Produção", UserRole.PROD,
-            "Administração", UserRole.ADMIN,
-            "Tecnologias de Informação", UserRole.IT
+            "Human Resources", UserRole.RH,
+            "Production", UserRole.PROD,
+            "Administration", UserRole.ADMIN,
+            "Information Technology", UserRole.IT
     );
 
     /**

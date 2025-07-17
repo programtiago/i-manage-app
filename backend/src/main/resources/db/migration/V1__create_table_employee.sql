@@ -8,7 +8,7 @@ CREATE TABLE TB_EMPLOYEE (
     department VARCHAR(100),
     birthday_date DATE,
     age INT CHECK (age >= 18 AND age <= 67),
-    genre VARCHAR(20),
+    gender VARCHAR(20),
     status VARCHAR(50),
     admission_date DATE,
     registry_date TIMESTAMP,

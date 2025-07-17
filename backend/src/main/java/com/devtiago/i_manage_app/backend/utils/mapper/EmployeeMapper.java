@@ -64,7 +64,7 @@ public class EmployeeMapper {
         }
 
         return new EmployeeDto(employee.getWorkerNo(), employee.getFullName(), employee.getEmail(), employee.getPhoneNumber(), employee.getRecruitmentCompany(),
-                employee.getOperation(), employee.getDepartment(), employee.getBirthdayDate(), employee.getGenre(), employee.getStatus(), employee.getAdmissionDate(),
+                employee.getOperation(), employee.getDepartment(), employee.getBirthdayDate(), employee.getGender(), employee.getStatus(), employee.getAdmissionDate(),
                 employee.getRegistryDate(), userDto);
     }
 
@@ -84,7 +84,7 @@ public class EmployeeMapper {
         }
 
         return new FullEmployeeDto(employee.getWorkerNo(), employee.getFullName(), employee.getEmail(), employee.getPhoneNumber(), employee.getRecruitmentCompany(),
-                employee.getOperation(), employee.getDepartment(), employee.getBirthdayDate(), employee.getAge(), employee.getGenre(), employee.getStatus(), employee.getAdmissionDate(),
+                employee.getOperation(), employee.getDepartment(), employee.getBirthdayDate(), employee.getAge(), employee.getGender(), employee.getStatus(), employee.getAdmissionDate(),
                 employee.getRegistryDate(), userDto);
     }
 

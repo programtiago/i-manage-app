@@ -77,9 +77,9 @@ public class Employee {
      */
     @Column(name = "age", nullable = false)
     private int age;
-    @Column(name = "genre", nullable = false, length = 9)
-    @NotBlank(message = "Genre is required.")
-    private String genre;
+    @Column(name = "gender", nullable = false, length = 9)
+    @NotBlank(message = "Gender is required.")
+    private String gender;
     /**
      * Current employment status of the employee (e.g., ACTIVE, INACTIVE, ON_LEAVE).
      */
@@ -103,8 +103,7 @@ public class Employee {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Employee(Long workerNo, String fullName, String email, String phoneNumber, String recruitmentCompany, Operation operation,
-                    String department, LocalDate birthdayDate, int age, String genre, Status status, LocalDate admissionDate, LocalDateTime registryDate) {
+    public Employee(Long workerNo, String fullName, String email, String phoneNumber, String recruitmentCompany, Operation operation, String department, LocalDate birthdayDate, String gender, Status status, LocalDate admissionDate, LocalDateTime registryDate, User user) {
         this.workerNo = workerNo;
         this.fullName = fullName;
         this.email = email;
@@ -113,23 +112,7 @@ public class Employee {
         this.operation = operation;
         this.department = department;
         this.birthdayDate = birthdayDate;
-        this.age = age;
-        this.genre = genre;
-        this.status = status;
-        this.admissionDate = admissionDate;
-        this.registryDate = registryDate;
-    }
-
-    public Employee(Long workerNo, String fullName, String email, String phoneNumber, String recruitmentCompany, Operation operation, String department, LocalDate birthdayDate, String genre, Status status, LocalDate admissionDate, LocalDateTime registryDate, User user) {
-        this.workerNo = workerNo;
-        this.fullName = fullName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.recruitmentCompany = recruitmentCompany;
-        this.operation = operation;
-        this.department = department;
-        this.birthdayDate = birthdayDate;
-        this.genre = genre;
+        this.gender = gender;
         this.status = status;
         this.admissionDate = admissionDate;
         this.registryDate = registryDate;

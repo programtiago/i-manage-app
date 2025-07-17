@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Employee } from '../../../model/Employee';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employees-list',
@@ -20,7 +21,9 @@ export class EmployeesListComponent {
     'Administração': 'ADMIN'
   }
   
-  constructor(){
+  constructor(private router: Router){}
 
+  openEmployeeForm(employee: Employee){
+    //this.router.navigateByUrl("admin/new-employee")
   }
 }

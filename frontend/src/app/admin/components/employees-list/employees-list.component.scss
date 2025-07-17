@@ -113,8 +113,12 @@ mat-row:hover {
     }
 }
 
-.mat-column-admissionDate {
+.mat-column-admissionDate.mat-mdc-header-cell {
     justify-content: center;
+    
+    text-align: center;
+    white-space: normal;
+    word-wrap: break-word;
 }
 
 

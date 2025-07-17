@@ -1,0 +1,64 @@
+<mat-card>
+    <mat-card-title>Create Employee</mat-card-title>
+
+    <form [formGroup]="employeeForm">
+        <mat-card-content>
+            <div class="form-fields">
+                <mat-form-field appearance="fill">
+                    <mat-label>Full Name</mat-label>
+                    <input matInput formControlName="fullName" required />
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" required />
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Contact</mat-label>
+                    <input matInput formControlName="contact" required />
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Recruitment Company</mat-label>
+                    <input matInput formControlName="recruitmentCompany" required />
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Operation</mat-label>
+                    <input matInput formControlName="operation" required />
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Department</mat-label>
+                    <input matInput formControlName="department" required />
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Birthday</mat-label>
+                    <input matInput [matDatepicker]="picker1" formControlName="birthdayDate" required />
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Admission</mat-label>
+                    <input matInput [matDatepicker]="picker2" formControlName="admissionDate" required />
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </mat-card-content>
+        <mat-card-actions align="end">
+      <button mat-stroked-button type="reset">Reset</button>
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        [disabled]="employeeForm.invalid"
+        >
+        Create
+      </button>
+    </mat-card-actions>
+    </form>
+</mat-card>

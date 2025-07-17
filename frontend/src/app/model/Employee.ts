@@ -10,7 +10,7 @@ export interface Employee {
     department: string,
     birthdayDate: Date,
     age: number,
-    genre: string,
+    gender: string,
     status: string,
     admissionDate: Date,
     registryDate: Date,

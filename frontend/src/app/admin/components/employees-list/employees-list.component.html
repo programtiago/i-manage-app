@@ -27,17 +27,12 @@
 
         <ng-container matColumnDef="department">
             <mat-header-cell *matHeaderCellDef>Department</mat-header-cell>
-            <mat-cell *matCellDef="let employee">{{ employee.department }}</mat-cell>
+            <mat-cell *matCellDef="let employee">{{ departmentMap[employee.department] }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="birthdayDate">
             <mat-header-cell *matHeaderCellDef>BirthdayDate</mat-header-cell>
             <mat-cell *matCellDef="let employee">{{ employee.birthdayDate | date: 'dd-MM-yyyy'}}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="genre">
-            <mat-header-cell *matHeaderCellDef>Genre</mat-header-cell>
-            <mat-cell *matCellDef="let employee">{{ employee.genre }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="status">
@@ -47,12 +42,12 @@
 
         <ng-container matColumnDef="admissionDate">
             <mat-header-cell *matHeaderCellDef>Admission Date</mat-header-cell>
-            <mat-cell *matCellDef="let employee">{{ employee.admissionDate }}</mat-cell>
+            <mat-cell *matCellDef="let employee">{{ employee.admissionDate | date: 'dd-MM-yyyy' }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="registryDate">
             <mat-header-cell *matHeaderCellDef>Registry Date</mat-header-cell>
-            <mat-cell *matCellDef="let employee">{{ employee.registryDate }}</mat-cell>
+            <mat-cell *matCellDef="let employee">{{ employee.registryDate | date: 'dd-MM-yyyy HH:mm' }}</mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

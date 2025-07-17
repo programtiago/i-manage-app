@@ -11,7 +11,25 @@ export class EmployeesListComponent {
   @Input() employees: Employee[] = [];
 
   readonly displayedColumns: string[] = ['fullName', 'email', 'contact', 'recruitmentCompany', 'operation', 'department', 'birthdayDate', 
-    'genre', 'status', 'admissionDate', 'registryDate'];
+    'status', 'admissionDate', 'registryDate'];
 
-  constructor(){}
+  departmentMap: { [key: string] : string } = {
+    'Tecnologias de Informação': 'TI',
+    'Recursos Humanos': 'RH',
+    'Produção': 'PROD',
+    'Administração': 'ADMIN'
+  }
+
+  genreMap: { [key: string]: string } = {
+    'Masculino': 'M',
+    'MASCULINO': 'M',
+    'Feminino': 'F',
+    'FEMININO': 'F'
+
+  }
+
+
+  constructor(){
+
+  }
 }

@@ -88,7 +88,7 @@ VALUES
        'ACTIVE', '2022-03-10', CURRENT_TIMESTAMP, 30018),
 
  (30019, 'Mariana Teixeira', 'mariana.teixeira@example.com', '919273645', 'Synergie',
-        'OPERATION_X', 'Produção', '1987-10-21', 36, 'Female',
+        'OPERATION_X', 'Production', '1987-10-21', 36, 'Female',
         'ACTIVE', '2017-01-07', CURRENT_TIMESTAMP, 30019),
 
  (30020, 'Nuno Ferreira', 'nuno.ferreira@example.com', '931728495', 'Synergie',

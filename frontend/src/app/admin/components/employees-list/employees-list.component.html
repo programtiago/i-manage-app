@@ -32,9 +32,9 @@
 
         <ng-container matColumnDef="birthdayDate">
             <mat-header-cell *matHeaderCellDef>BirthdayDate</mat-header-cell>
-            <mat-cell *matCellDef="let employee">{{ employee.birthdayDate }}</mat-cell>
+            <mat-cell *matCellDef="let employee">{{ employee.birthdayDate | date: 'dd-MM-yyyy'}}</mat-cell>
         </ng-container>
-        
+
         <ng-container matColumnDef="genre">
             <mat-header-cell *matHeaderCellDef>Genre</mat-header-cell>
             <mat-cell *matCellDef="let employee">{{ employee.genre }}</mat-cell>

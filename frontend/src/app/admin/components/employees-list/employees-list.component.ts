@@ -19,16 +19,7 @@ export class EmployeesListComponent {
     'Produção': 'PROD',
     'Administração': 'ADMIN'
   }
-
-  genreMap: { [key: string]: string } = {
-    'Masculino': 'M',
-    'MASCULINO': 'M',
-    'Feminino': 'F',
-    'FEMININO': 'F'
-
-  }
-
-
+  
   constructor(){
 
   }

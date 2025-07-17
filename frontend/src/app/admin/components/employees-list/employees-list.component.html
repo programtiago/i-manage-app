@@ -37,7 +37,11 @@
 
         <ng-container matColumnDef="status">
             <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
-            <mat-cell *matCellDef="let employee">{{ employee.status }}</mat-cell>
+            <mat-cell *matCellDef="let employee">
+                <div [ngClass]="{'status-active': employee.status === 'ACTIVE', 'status-inactive': employee.status === 'INACTIVE'}">
+                    {{ employee.status }}
+                </div>
+            </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="admissionDate">

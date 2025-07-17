@@ -101,6 +101,16 @@ mat-row:hover {
 
 .mat-column-status {
     justify-content: center;
+    font-weight: bold;
+
+    .status-active {
+        color: #4caf50;
+    }
+
+    .status-inactive {
+        color: #f44336;
+        font-style: italic;
+    }
 }
 
 .mat-column-admissionDate {

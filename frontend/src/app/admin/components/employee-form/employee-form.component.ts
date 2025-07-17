@@ -20,6 +20,7 @@ export class EmployeeFormComponent implements OnInit{
   ngOnInit(): void {
     this.employeeForm = this.fb.group({
       fullName: [this.employee?.fullName || '', Validators.required],
+      workerNumber: [this.employee?.workerNo || '', Validators.required],
       email: [this.employee?.email || '', [Validators.required, Validators.email]],
       contact: [this.employee?.phoneNumber || '', Validators.required],
       recruitmentCompany: [this.employee?.recruitmentCompany || ''],

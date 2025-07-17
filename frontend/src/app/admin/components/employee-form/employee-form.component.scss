@@ -1,0 +1,33 @@
+.employee-form-card {
+    background-color: #2c2c2c;
+    color: white;
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+mat-card-title {
+    font-size: 24px;
+    margin-bottom: 16px;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+}
+
+.form-fields {
+    display: grid;
+}
+
+@media screen and (min-width: 700px) and (max-width: 1536px)  {
+    .employee-form-card {
+        height: 550px;
+        max-width: 700px;
+    }
+
+    .form-fields {
+        gap: 10px;
+        grid-template-columns: 1fr 1fr;
+    }
+}

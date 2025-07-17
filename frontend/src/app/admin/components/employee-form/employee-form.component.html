@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="employee-form-card">
     <mat-card-title>Create Employee</mat-card-title>
 
     <form [formGroup]="employeeForm">
@@ -7,6 +7,11 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Full Name</mat-label>
                     <input matInput formControlName="fullName" required />
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Worker Number</mat-label>
+                    <input matInput formControlName="workNumber" required />
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">

@@ -38,11 +38,11 @@
                     <mat-label>Email</mat-label>
                     <input matInput formControlName="email" required />
 
-                    <mat-error *ngIf="employeeForm.get('workerNumber')?.hasError('min') && employeeForm.get('workerNumber')?.touched">
+                    <mat-error *ngIf="employeeForm.get('email')?.hasError('minlength') && employeeForm.get('email')?.touched">
                         Email must be at least 15 characters
                     </mat-error>
 
-                    <mat-error *ngIf="employeeForm.get('fullName')?.hasError('maxlength') && employeeForm.get('fullName')?.touched">
+                    <mat-error *ngIf="employeeForm.get('email')?.hasError('maxlength') && employeeForm.get('email')?.touched">
                         Full name must be less than 60 characters
                     </mat-error>
                 </mat-form-field>
@@ -50,6 +50,14 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Contact</mat-label>
                     <input matInput formControlName="contact" required />
+
+                    <mat-error *ngIf="employeeForm.get('contact')?.hasError('minlength') && employeeForm.get('contact')?.touched">
+                        Contact must be at least 9 digits
+                    </mat-error>
+
+                    <mat-error *ngIf="employeeForm.get('contact')?.hasError('maxlength') && employeeForm.get('contact')?.touched">
+                        Contact must be less than 14 digits
+                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">

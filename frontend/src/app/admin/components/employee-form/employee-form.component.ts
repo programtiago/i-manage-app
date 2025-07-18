@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Employee } from '../../../model/Employee';
 import { Location } from '@angular/common';
 import { AdminService } from '../../services/admin.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ErrorDialogComponent } from '../../../shared/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-employee-form',
@@ -26,7 +28,8 @@ export class EmployeeFormComponent implements OnInit{
   constructor(
     private fb: FormBuilder,
     private location: Location,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private dialog: MatDialog
   ){}
 
   ngOnInit(): void {
@@ -50,9 +53,25 @@ export class EmployeeFormComponent implements OnInit{
 
   createEmployee(){
     if (this.employeeForm.valid){
-      this.adminService.createEmployeeWithUser(this.employeeForm.value).subscribe((res) => {
-        console.log(res)
+      this.adminService.createEmployeeWithUser(this.employeeForm.value).subscribe({
+        next: () => {
+          
+        },
+        error: (errorResponse) => {
+          const message = errorResponse?.error?.message || 'Unexpected error ocurred.';
+
+          this.openErrorDialog("Submission Failed")
+        }
       })
     }
+  }
+
+  openErrorDialog(message: string): void {
+    this.dialog.open(ErrorDialogComponent, {
+      data: {
+        title: 'Error',
+        message
+      }
+    })
   }
 }

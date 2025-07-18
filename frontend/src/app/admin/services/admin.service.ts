@@ -19,4 +19,8 @@ export class AdminService {
   createEmployeeWithUser(employee: Employee): Observable<Employee>{
     return this.http.post<Employee>(`${API_URL_EMPLOYEES}/create-with-user`, employee);
   }
+
+  getEmployeeByWorkerNo(workerNumber: string): Observable<Employee>{
+    return this.http.get<Employee>(`${API_URL_EMPLOYEES}/` + workerNumber);
+  }
 }

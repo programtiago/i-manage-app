@@ -1,5 +1,10 @@
 <div class="table-container">
     <mat-table [dataSource]="employees">
+        <ng-container matColumnDef="workerNo">
+            <mat-header-cell *matHeaderCellDef>Work No</mat-header-cell>
+            <mat-cell *matCellDef="let employee">{{ employee.workerNo }}</mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="fullName">
             <mat-header-cell *matHeaderCellDef>Full Name</mat-header-cell>
             <mat-cell *matCellDef="let employee">{{ employee.fullName }}</mat-cell>
@@ -55,6 +60,6 @@
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns" (click)="openEmployeeForm(row)"></mat-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns" (click)="openEmployeeForm(row.workerNo)"></mat-row>
     </mat-table>
 </div>

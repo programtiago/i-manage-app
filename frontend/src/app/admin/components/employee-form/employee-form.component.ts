@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 import { AdminService } from '../../services/admin.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../../../shared/error-dialog/error-dialog.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-form',
@@ -14,7 +14,6 @@ import { Router } from '@angular/router';
 })
 export class EmployeeFormComponent implements OnInit{
   @Input() employee: Employee | null = null;
-  @Output() formSubmit = new EventEmitter<Employee>()
 
   employeeForm!: FormGroup;
 
@@ -26,12 +25,16 @@ export class EmployeeFormComponent implements OnInit{
 
   recruitmentCompanys: string[] = ['Intern', 'Randstad', 'Adecco', 'Synergie'] //for testing
 
+  isEditMode: boolean = false;
+  workNo: number | null = null;
+
   constructor(
     private fb: FormBuilder,
     private location: Location,
     private adminService: AdminService,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ){}
 
   ngOnInit(): void {
@@ -46,6 +49,21 @@ export class EmployeeFormComponent implements OnInit{
       gender: [this.employee?.gender || '', Validators.required],
       birthdayDate: [this.employee?.birthdayDate || null, Validators.required],
       admissionDate: [this.employee?.admissionDate || null, Validators.required]
+    })
+
+    this.route.paramMap.subscribe(params => {
+      const workerNo = params.get('workerNo');
+      if (workerNo){
+        this.isEditMode = true;
+        this.workNo =+ workerNo;
+        this.loadEmployeeByWorkerNumber(workerNo)
+      }
+    })
+  }
+
+  loadEmployeeByWorkerNumber(workerNumber: string){
+    this.adminService.getEmployeeByWorkerNo(workerNumber).subscribe(emp => {
+      this.employeeForm.patchValue(emp);
     })
   }
 

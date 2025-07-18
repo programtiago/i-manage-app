@@ -11,7 +11,7 @@ export class EmployeesListComponent {
 
   @Input() employees: Employee[] = [];
 
-  readonly displayedColumns: string[] = ['fullName', 'email', 'contact', 'recruitmentCompany', 'operation', 'department', 'birthdayDate', 
+  readonly displayedColumns: string[] = ['workerNo', 'fullName', 'email', 'contact', 'recruitmentCompany', 'operation', 'department', 'birthdayDate', 
     'status', 'admissionDate', 'registryDate'];
 
   departmentMap: { [key: string] : string } = {
@@ -23,7 +23,7 @@ export class EmployeesListComponent {
   
   constructor(private router: Router){}
 
-  openEmployeeForm(employee: Employee){
-    //this.router.navigateByUrl("admin/new-employee")
+  openEmployeeForm(workerNo: string){
+    this.router.navigateByUrl("admin/employee/edit/" + workerNo);
   }
 }

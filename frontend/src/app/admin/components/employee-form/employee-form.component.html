@@ -1,5 +1,6 @@
 <mat-card class="employee-form-card">
-    <mat-card-title>Create Employee</mat-card-title>
+    <mat-card-title *ngIf="isEditMode">Update Employee</mat-card-title>
+    <mat-card-title *ngIf="!isEditMode">Create Employee</mat-card-title>
 
     <form [formGroup]="employeeForm">
         <mat-card-content>

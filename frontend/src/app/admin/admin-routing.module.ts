@@ -10,7 +10,12 @@ const routes: Routes = [
   },
 
   {
-    path: 'new-employee',
+    path: 'employee/create',
+    component: EmployeeFormComponent
+  },
+
+  {
+    path: 'employee/edit/:workerNo',
     component: EmployeeFormComponent
   }
 ];

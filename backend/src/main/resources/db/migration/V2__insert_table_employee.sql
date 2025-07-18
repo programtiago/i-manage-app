@@ -60,7 +60,7 @@ VALUES
         'ACTIVE', '2018-08-30', CURRENT_TIMESTAMP, 30011),
 
  (30012, 'Felipe Gomes', 'felipe.gomes@example.com', '933564789', 'Intern',
-         'OPERATION_X', 'Produção', '1993-06-17', 30, 'Male',
+         'OPERATION_X', 'Production', '1993-06-17', 30, 'Male',
          'ACTIVE', '2020-01-15', CURRENT_TIMESTAMP, 30012),
 
  (30013, 'Gabriela Lima', 'gabriela.lima@example.com', '919875432', 'Synergie',

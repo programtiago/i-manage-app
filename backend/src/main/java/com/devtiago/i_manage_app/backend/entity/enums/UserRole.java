@@ -4,6 +4,6 @@ public enum UserRole {
 
     PROD,
     ADMIN,
-    RH,
-    IT
+    HR,
+    TI
 }

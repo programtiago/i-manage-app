@@ -113,7 +113,7 @@ export class EmployeeFormComponent implements OnInit{
     this.adminService.updateEmployee(employee, workerNumber).subscribe({
       next: (updatedEmp) => {
         console.log('Employee updated:', updatedEmp);
-        this.router.navigate(['/employees'])
+        this.router.navigate(['admin/employees'])
       },
       error: (err) => {
         console.log('Error updating employee:', err);

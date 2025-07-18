@@ -45,7 +45,7 @@ public class EmployeeMapper {
                     .collect(Collectors.toSet()));
         }
         return new Employee(employeeDto.workerNo(), employeeDto.fullName(), employeeDto.email(), employeeDto.phoneNumber(), employeeDto.recruitmentCompany(),
-                employeeDto.operation(), employeeDto.department(), employeeDto.birthdayDate(),  /*employeeDto.age(),*/ employeeDto.genre(), employeeDto.status(), employeeDto.admissionDate(),
+                employeeDto.operation(), employeeDto.department(), employeeDto.birthdayDate(),  /*employeeDto.age(),*/ employeeDto.gender(), employeeDto.status(), employeeDto.admissionDate(),
                 employeeDto.registryDate(), user);
     }
 

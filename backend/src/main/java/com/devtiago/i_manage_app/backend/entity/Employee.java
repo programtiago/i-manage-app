@@ -4,10 +4,7 @@ import com.devtiago.i_manage_app.backend.entity.enums.Operation;
 import com.devtiago.i_manage_app.backend.entity.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,7 +30,7 @@ public class Employee {
     @Id
     @NotNull(message = "Worker Number is required")
     @Column(name = "worker_no")
-    @Min(value = 3000, message = "Worker Number must be at least 3000")
+    @Min(value = 30000, message = "Worker Number must be at least 30000")
     @Max(value = 100000, message = "Worker Number must be at most 100000")
     private Long workerNo;
     @Column(name = "full_name", length = 100, nullable = false)
@@ -71,6 +68,7 @@ public class Employee {
     private String department;
     @NotNull
     @Column(name = "birthday_date")
+    @Past
     private LocalDate birthdayDate;
     /**
      * Current age (its computed depending on birthdayDate).

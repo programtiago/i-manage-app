@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { AdminService } from '../../services/admin.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../../../shared/error-dialog/error-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-form',
@@ -29,7 +30,8 @@ export class EmployeeFormComponent implements OnInit{
     private fb: FormBuilder,
     private location: Location,
     private adminService: AdminService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ){}
 
   ngOnInit(): void {
@@ -53,9 +55,16 @@ export class EmployeeFormComponent implements OnInit{
 
   createEmployee(){
     if (this.employeeForm.valid){
-      this.adminService.createEmployeeWithUser(this.employeeForm.value).subscribe({
+      const empFormValues = this.employeeForm.value;
+
+      const empDataToSend = {
+        ...empFormValues,
+        birthdayDate: this.formatDate(empFormValues.birthdayDate),
+        admissionDate: this.formatDate(empFormValues.admissionDate)
+      }
+      this.adminService.createEmployeeWithUser(empDataToSend).subscribe({
         next: () => {
-          
+          this.router.navigateByUrl("admin/employees")
         },
         error: (errorResponse) => {
           const message = errorResponse?.error?.message || 'Unexpected error ocurred.';
@@ -71,7 +80,14 @@ export class EmployeeFormComponent implements OnInit{
       data: {
         title: 'Error',
         message
-      }
+      },
+      closeOnNavigation: false,
+      enterAnimationDuration: '100ms'
     })
+  }
+
+  formatDate(date: Date):string | null {
+    if (!date) return null;
+    return date.toISOString().split('T')[0];
   }
 }

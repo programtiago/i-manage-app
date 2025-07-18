@@ -26,7 +26,7 @@ export class EmployeeFormComponent implements OnInit{
   recruitmentCompanys: string[] = ['Intern', 'Randstad', 'Adecco', 'Synergie'] //for testing
 
   isEditMode: boolean = false;
-  workNo: number | null = null;
+  workNo!: number;
 
   constructor(
     private fb: FormBuilder,
@@ -107,5 +107,17 @@ export class EmployeeFormComponent implements OnInit{
   formatDate(date: Date):string | null {
     if (!date) return null;
     return date.toISOString().split('T')[0];
+  }
+
+  updateEmployee(employee: Employee, workerNumber: number){
+    this.adminService.updateEmployee(employee, workerNumber).subscribe({
+      next: (updatedEmp) => {
+        console.log('Employee updated:', updatedEmp);
+        this.router.navigate(['/employees'])
+      },
+      error: (err) => {
+        console.log('Error updating employee:', err);
+      }
+    })
   }
 }

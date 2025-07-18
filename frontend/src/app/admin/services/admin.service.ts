@@ -23,4 +23,8 @@ export class AdminService {
   getEmployeeByWorkerNo(workerNumber: string): Observable<Employee>{
     return this.http.get<Employee>(`${API_URL_EMPLOYEES}/` + workerNumber);
   }
+
+  updateEmployee(employee: Employee, workerNumber: number):Observable<Employee>{
+    return this.http.put<Employee>(`${API_URL_EMPLOYEES}/` + workerNumber, employee);
+  }
 }

@@ -106,13 +106,21 @@
         </mat-card-content>
         <mat-card-actions align="end">
       <button mat-stroked-button (click)="goBack()">Cancel</button>
-      <button
+      <button *ngIf="!isEditMode"
         mat-raised-button
         style="color: black;"
         (click)="createEmployee()"
         [disabled]="employeeForm.invalid"
         >
         Create
+      </button>
+      <button *ngIf="isEditMode"
+        mat-raised-button
+        style="color: black;"
+        (click)="updateEmployee(employeeForm.value, workNo)"
+        [disabled]="employeeForm.invalid"
+        >
+        Save
       </button>
     </mat-card-actions>
     </form>

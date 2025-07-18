@@ -108,7 +108,9 @@ public class EmployeeService {
         existingEmp.setDepartment(employeeDto.department());
         existingEmp.setBirthdayDate(employeeDto.birthdayDate());
         existingEmp.setEmail(employeeDto.email());
-        existingEmp.setStatus(employeeDto.status());
+
+        existingEmp.setStatus(existingEmp.getStatus());
+        existingEmp.setRegistryDate(existingEmp.getRegistryDate());
 
         Employee updatedEmp = employeeRepository.save(existingEmp);
 

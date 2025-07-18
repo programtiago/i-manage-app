@@ -35,9 +35,9 @@ export class EmployeeFormComponent implements OnInit{
   ngOnInit(): void {
     this.employeeForm = this.fb.group({
       fullName: [this.employee?.fullName || '', [Validators.minLength(10), Validators.maxLength(100)]],
-      workerNumber: [this.employee?.workerNo || null, [Validators.min(3000), Validators.max(100000)]],
+      workerNo: [this.employee?.workerNo || null, [Validators.min(30000), Validators.max(100000)]],
       email: [this.employee?.email || '', [Validators.minLength(15), Validators.maxLength(60), Validators.email]],
-      contact: [this.employee?.phoneNumber || '', [Validators.minLength(9), Validators.maxLength(14)]],
+      phoneNumber: [this.employee?.phoneNumber || '', [Validators.minLength(9), Validators.maxLength(14)]],
       recruitmentCompany: [this.employee?.recruitmentCompany || ''],
       operation: [this.employee?.operation || '', Validators.required],
       department: [this.employee?.department || '', Validators.required],
@@ -60,7 +60,7 @@ export class EmployeeFormComponent implements OnInit{
         error: (errorResponse) => {
           const message = errorResponse?.error?.message || 'Unexpected error ocurred.';
 
-          this.openErrorDialog("Submission Failed")
+          this.openErrorDialog(message)
         }
       })
     }

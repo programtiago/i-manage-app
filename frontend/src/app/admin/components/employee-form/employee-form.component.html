@@ -23,13 +23,13 @@
 
                 <mat-form-field appearance="fill">
                     <mat-label>Worker Number</mat-label>
-                    <input matInput formControlName="workerNumber" required />
+                    <input matInput formControlName="workerNo" required />
 
-                    <mat-error *ngIf="employeeForm.get('workerNumber')?.hasError('min') && employeeForm.get('workerNumber')?.touched">
-                        Worker number must be at least 3000
+                    <mat-error *ngIf="employeeForm.get('workerNo')?.hasError('min') && employeeForm.get('workerNo')?.touched">
+                        Worker number must be at least 30000
                     </mat-error>
 
-                    <mat-error *ngIf="employeeForm.get('workerNumber')?.hasError('max') && employeeForm.get('workerNumber')?.touched">
+                    <mat-error *ngIf="employeeForm.get('workerNo')?.hasError('max') && employeeForm.get('workerNo')?.touched">
                         Worker number must be no more than 10000
                     </mat-error>
                 </mat-form-field>
@@ -49,13 +49,13 @@
 
                 <mat-form-field appearance="fill">
                     <mat-label>Contact</mat-label>
-                    <input matInput formControlName="contact" required />
+                    <input matInput formControlName="phoneNumber" required />
 
-                    <mat-error *ngIf="employeeForm.get('contact')?.hasError('minlength') && employeeForm.get('contact')?.touched">
+                    <mat-error *ngIf="employeeForm.get('phoneNumber')?.hasError('minlength') && employeeForm.get('phoneNumber')?.touched">
                         Contact must be at least 9 digits
                     </mat-error>
 
-                    <mat-error *ngIf="employeeForm.get('contact')?.hasError('maxlength') && employeeForm.get('contact')?.touched">
+                    <mat-error *ngIf="employeeForm.get('phoneNumber')?.hasError('maxlength') && employeeForm.get('phoneNumber')?.touched">
                         Contact must be less than 14 digits
                     </mat-error>
                 </mat-form-field>

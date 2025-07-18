@@ -15,10 +15,10 @@ export class EmployeesListComponent {
     'status', 'admissionDate', 'registryDate'];
 
   departmentMap: { [key: string] : string } = {
-    'Tecnologias de Informação': 'TI',
-    'Recursos Humanos': 'RH',
-    'Produção': 'PROD',
-    'Administração': 'ADMIN'
+    'Information Technology': 'TI',
+    'Human Resources': 'HR',
+    'Production': 'PROD',
+    'Administration': 'ADMIN'
   }
   
   constructor(private router: Router){}

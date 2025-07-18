@@ -114,6 +114,7 @@ mat-row:hover {
 }
 
 .mat-column-admissionDate.mat-mdc-header-cell {
+    min-width: 100px;
     justify-content: center;
     
     text-align: center;

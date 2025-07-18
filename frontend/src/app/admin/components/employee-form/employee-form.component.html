@@ -7,16 +7,44 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Full Name</mat-label>
                     <input matInput formControlName="fullName" required />
+
+                    <mat-error *ngIf="employeeForm.get('fullName')?.hasError('required') && employeeForm.get('fullName')?.touched">
+                        Full Name is required
+                    </mat-error>
+
+                    <mat-error *ngIf="employeeForm.get('fullName')?.hasError('minlength') && employeeForm.get('fullName')?.touched">
+                        Full name must be at least 10 characters
+                    </mat-error>
+
+                    <mat-error *ngIf="employeeForm.get('fullName')?.hasError('maxlength') && employeeForm.get('fullName')?.touched">
+                        Full name must be less than 100 characters
+                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
                     <mat-label>Worker Number</mat-label>
-                    <input matInput formControlName="workNumber" required />
+                    <input matInput formControlName="workerNumber" required />
+
+                    <mat-error *ngIf="employeeForm.get('workerNumber')?.hasError('min') && employeeForm.get('workerNumber')?.touched">
+                        Worker number must be at least 3000
+                    </mat-error>
+
+                    <mat-error *ngIf="employeeForm.get('workerNumber')?.hasError('max') && employeeForm.get('workerNumber')?.touched">
+                        Worker number must be no more than 10000
+                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
                     <mat-label>Email</mat-label>
                     <input matInput formControlName="email" required />
+
+                    <mat-error *ngIf="employeeForm.get('workerNumber')?.hasError('min') && employeeForm.get('workerNumber')?.touched">
+                        Email must be at least 15 characters
+                    </mat-error>
+
+                    <mat-error *ngIf="employeeForm.get('fullName')?.hasError('maxlength') && employeeForm.get('fullName')?.touched">
+                        Full name must be less than 60 characters
+                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
@@ -26,17 +54,30 @@
 
                 <mat-form-field appearance="fill">
                     <mat-label>Recruitment Company</mat-label>
-                    <input matInput formControlName="recruitmentCompany" required />
+                    <mat-select formControlName="recruitmentCompany" required>
+                        <mat-option *ngFor="let rctComp of recruitmentCompanys" [value]="rctComp">{{ rctComp }}</mat-option>
+                    </mat-select>
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
                     <mat-label>Operation</mat-label>
-                    <input matInput formControlName="operation" required />
+                    <mat-select formControlName="operation" required>
+                        <mat-option *ngFor="let op of operations" [value]="op">{{ op }}</mat-option>
+                    </mat-select>
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
                     <mat-label>Department</mat-label>
-                    <input matInput formControlName="department" required />
+                    <mat-select formControlName="department" required>
+                        <mat-option *ngFor="let dep of departments" [value]="dep">{{ dep }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Gender</mat-label>
+                    <mat-select formControlName="gender" required>
+                        <mat-option *ngFor="let gender of genders" [value]="gender">{{ gender }}</mat-option>
+                    </mat-select>
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
@@ -55,11 +96,11 @@
             </div>
         </mat-card-content>
         <mat-card-actions align="end">
-      <button mat-stroked-button type="reset">Reset</button>
+      <button mat-stroked-button (click)="goBack()">Cancel</button>
       <button
         mat-flat-button
         color="primary"
-        type="submit"
+        (click)="createEmployee()"
         [disabled]="employeeForm.invalid"
         >
         Create

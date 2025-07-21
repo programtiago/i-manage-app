@@ -62,7 +62,7 @@
         <ng-container matColumnDef="actions">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
                 <mat-cell *matCellDef="let employee">
-                    <button mat-icon-button class="view-user-acc-btn" (click)="viewEmployeeUserDetails()">
+                    <button mat-icon-button (click)="onUserAccountViewDetailsClick($event, employee.user)" class="view-user-acc-btn" (click)="viewEmployeeUserDetails(employee.user)">
                         <mat-icon>account_circle</mat-icon>
                     </button>
                 </mat-cell>

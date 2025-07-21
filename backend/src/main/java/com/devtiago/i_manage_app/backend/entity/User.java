@@ -24,6 +24,9 @@ import java.util.Set;
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(name = "username", nullable = false)
     @NotBlank(message = "username is required")
     private String username;
@@ -38,7 +41,7 @@ public class User {
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(
             name = "TB_USER_ROLES",
-            joinColumns = @JoinColumn(name = "user_username")
+            joinColumns = @JoinColumn(name = "user_id")
     )
     @Enumerated(EnumType.STRING)
     @NotNull(message = "userRoles are required.")

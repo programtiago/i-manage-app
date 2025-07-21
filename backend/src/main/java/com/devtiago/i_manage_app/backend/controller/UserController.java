@@ -20,9 +20,9 @@ public class UserController {
         return userService.findAll();
     }
 
-    @PutMapping("/{workerNo}")
-    public UserDto update(@RequestBody UserDto user, @PathVariable String workerNo){
-        return userService.update(user, workerNo);
+    @PutMapping("/{username}")
+    public UserDto update(@RequestBody UserDto user, @PathVariable String username){
+        return userService.update(user, username);
     }
 
 }

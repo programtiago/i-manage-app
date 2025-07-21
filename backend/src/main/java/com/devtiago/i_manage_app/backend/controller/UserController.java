@@ -1,11 +1,10 @@
 package com.devtiago.i_manage_app.backend.controller;
 
+import com.devtiago.i_manage_app.backend.entity.User;
 import com.devtiago.i_manage_app.backend.entity.dto.UserDto;
 import com.devtiago.i_manage_app.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,4 +19,10 @@ public class UserController {
     public List<UserDto> findAll(){
         return userService.findAll();
     }
+
+    @PutMapping("/{workerNo}")
+    public UserDto update(@RequestBody UserDto user, @PathVariable String workerNo){
+        return userService.update(user, workerNo);
+    }
+
 }

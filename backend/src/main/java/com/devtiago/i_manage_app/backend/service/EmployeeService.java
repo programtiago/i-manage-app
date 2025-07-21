@@ -98,7 +98,7 @@ public class EmployeeService {
         return employeeMapper.toFullDto(newEmployee);
     }
 
-    public EmployeeDto update(EmployeeDto employeeDto, Long workerNo){
+    public EmployeeDto update(EmployeeDto employeeDto, String workerNo){
         Employee existingEmp = employeeRepository.findById(workerNo)
                 .orElseThrow(() -> new EmployeeException("Employee not found with worker number " + workerNo));
 
@@ -117,14 +117,14 @@ public class EmployeeService {
         return employeeMapper.toDto(updatedEmp);
     }
 
-    public EmployeeDto findByWorkerNo(Long workerNo) {
+    public EmployeeDto findByWorkerNo(String workerNo) {
         Employee employee = employeeRepository.findById(workerNo)
                 .orElseThrow(() -> new EmployeeException("Employee not found with worker number " + workerNo));
 
         return employeeMapper.toDto(employee);
     }
 
-    public void deactivateEmployee(Long workerNo) {
+    public void deactivateEmployee(String workerNo) {
         Employee employee = employeeRepository.findById(workerNo)
                 .orElseThrow(() -> new EmployeeException("Employee not found with worker number " + workerNo));
 

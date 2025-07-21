@@ -10,10 +10,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record EmployeeDto(
-        @NotNull(message = "Worker Number is required")
-        @Min(value = 30000, message = "Worker Number must be at least 30000")
-        @Max(value = 100000, message = "Worker Number must be at most 100000")
-        Long workerNo,
+        @NotBlank(message = "Worker Number is required")
+        //@Min(value = 30000, message = "Worker Number must be at least 30000")
+        //@Max(value = 100000, message = "Worker Number must be at most 100000")
+        String workerNo,
         @NotBlank(message = "Full name is required")
         @Length(min = 10, max = 100, message = "Full name should be between 10 and 100 characters.")
         String fullName,

@@ -32,17 +32,17 @@ public class EmployeeController {
     }
 
     @PutMapping("/{workerNo}")
-    public EmployeeDto update(@RequestBody @Valid EmployeeDto employee, @PathVariable Long workerNo){
+    public EmployeeDto update(@RequestBody @Valid EmployeeDto employee, @PathVariable String workerNo){
         return employeeService.update(employee, workerNo);
     }
 
     @GetMapping("/{workerNo}")
-    public EmployeeDto findByWorkerNo(@PathVariable Long workerNo){
+    public EmployeeDto findByWorkerNo(@PathVariable String workerNo){
         return employeeService.findByWorkerNo(workerNo);
     }
 
     @PutMapping("deactivate/{workerNo}")
-    public void deactivate(@PathVariable Long workerNo){
+    public void deactivate(@PathVariable String workerNo){
         employeeService.deactivateEmployee(workerNo);
     }
 }

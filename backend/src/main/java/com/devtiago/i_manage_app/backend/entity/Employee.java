@@ -28,11 +28,11 @@ public class Employee {
      * Unique worker number (internal employee ID)
      */
     @Id
-    @NotNull(message = "Worker Number is required")
+    @NotBlank(message = "Worker Number is required")
     @Column(name = "worker_no")
-    @Min(value = 30000, message = "Worker Number must be at least 30000")
-    @Max(value = 100000, message = "Worker Number must be at most 100000")
-    private Long workerNo;
+    //@Min(value = 30000, message = "Worker Number must be at least 30000")
+    //@Max(value = 100000, message = "Worker Number must be at most 100000")
+    private String workerNo;
     @Column(name = "full_name", length = 100, nullable = false)
     @NotBlank(message = "Full name is required")
     @Length(min = 10, max = 100, message = "Full name should be between 10 and 100 characters.")
@@ -101,7 +101,7 @@ public class Employee {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Employee(Long workerNo, String fullName, String email, String phoneNumber, String recruitmentCompany, Operation operation, String department, LocalDate birthdayDate, String gender, Status status, LocalDate admissionDate, LocalDateTime registryDate, User user) {
+    public Employee(String workerNo, String fullName, String email, String phoneNumber, String recruitmentCompany, Operation operation, String department, LocalDate birthdayDate, String gender, Status status, LocalDate admissionDate, LocalDateTime registryDate, User user) {
         this.workerNo = workerNo;
         this.fullName = fullName;
         this.email = email;

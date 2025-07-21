@@ -59,6 +59,15 @@
             <mat-cell *matCellDef="let employee">{{ employee.registryDate | date: 'dd-MM-yyyy HH:mm' }}</mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let employee">
+                    <button mat-icon-button class="view-user-acc-btn" (click)="viewEmployeeUserDetails()">
+                        <mat-icon>account_circle</mat-icon>
+                    </button>
+                </mat-cell>
+        </ng-container>
+
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns" (click)="openEmployeeForm(row.workerNo)"></mat-row>
     </mat-table>

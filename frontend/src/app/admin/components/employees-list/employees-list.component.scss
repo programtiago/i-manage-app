@@ -4,6 +4,7 @@
         overflow-y: auto;
         display: block;
         overflow-x: auto;
+        width: 100%;
     }
 }
 
@@ -125,7 +126,7 @@ mat-row:hover {
     }
 }
 
-.mat-column-admissionDate.mat-mdc-header-cell {
+.mat-column-admissionDate {
     min-width: 100px;
     justify-content: center;
     
@@ -138,4 +139,27 @@ mat-row:hover {
 .mat-column-registryDate {
     min-width: 180px;
     justify-content: center;
+}
+
+.mat-column-actions {
+    min-width: 100px;
+}
+
+.view-user-acc-btn {
+    color: #e0e0e0;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    &.focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2); 
+    }
+
+    mat-icon {
+        font-size: 24px;
+    }
 }

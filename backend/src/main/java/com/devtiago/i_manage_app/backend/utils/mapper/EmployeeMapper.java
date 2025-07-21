@@ -55,6 +55,7 @@ public class EmployeeMapper {
         UserDto userDto = null;
         if (employee.getUser() != null){
             userDto = new UserDto(
+                    employee.getUser().getId(),
                     employee.getUser().getUsername(),
                     employee.getUser().getPassword(),
                     employee.getUser().getCreatedAt(),
@@ -73,8 +74,10 @@ public class EmployeeMapper {
         if (employee == null) return null;
 
         UserDto userDto = null;
-        if (employee.getUser() != null){
+        if (employee.getUser() != null && employee.getUser().getId() != null){
+            //if (employee.getUser() != null)
             userDto = new UserDto(
+                    employee.getUser().getId(),
                     employee.getUser().getUsername(),
                     employee.getUser().getPassword(),
                     employee.getUser().getCreatedAt(),
@@ -87,6 +90,8 @@ public class EmployeeMapper {
                 employee.getOperation(), employee.getDepartment(), employee.getBirthdayDate(), employee.getAge(), employee.getGender(), employee.getStatus(), employee.getAdmissionDate(),
                 employee.getRegistryDate(), userDto);
     }
+
+
 
     public List<FullEmployeeDto> toListDto(List<Employee> employees){
         return employees.stream()

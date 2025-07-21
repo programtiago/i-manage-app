@@ -9,6 +9,8 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 public record UserDto(
+
+        Long id,
         @NotBlank(message = "username is required")
         String username,
         @NotBlank(message = "password is required")

@@ -3,9 +3,11 @@ package com.devtiago.i_manage_app.backend.service;
 import com.devtiago.i_manage_app.backend.entity.Employee;
 import com.devtiago.i_manage_app.backend.entity.User;
 import com.devtiago.i_manage_app.backend.entity.dto.EmployeeDto;
+import com.devtiago.i_manage_app.backend.entity.dto.EmployeeWithoutUserDto;
 import com.devtiago.i_manage_app.backend.entity.dto.FullEmployeeDto;
 import com.devtiago.i_manage_app.backend.entity.enums.Status;
 import com.devtiago.i_manage_app.backend.exceptions.EmployeeException;
+import com.devtiago.i_manage_app.backend.exceptions.UserException;
 import com.devtiago.i_manage_app.backend.repository.EmployeeRepository;
 import com.devtiago.i_manage_app.backend.repository.UserRepository;
 import com.devtiago.i_manage_app.backend.utils.PasswordUserGenerator;
@@ -23,6 +25,7 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -54,6 +57,7 @@ public class EmployeeService {
             newEmployee.setStatus(Status.ACTIVE);
             newEmployee.setRegistryDate(LocalDateTime.now());
             newEmployee.setAge(age);
+            newEmployee.setUser(null);
 
             saveEmployee(newEmployee);
         }catch (Exception ex){
@@ -67,8 +71,20 @@ public class EmployeeService {
     public FullEmployeeDto createWithUser(EmployeeDto employeeDto){
         int age = calculateAge(employeeDto.birthdayDate());
 
+        Optional<Employee> existingEmployee = employeeRepository.findByWorkerNo(employeeDto.workerNo());
+
+        if (existingEmployee.isPresent()){
+            throw new EmployeeException("Employee with workerNo " + employeeDto.workerNo() + " already in use.");
+        }
+
+        Long userId = Long.valueOf(employeeDto.workerNo());
+        if (userRepository.existsById(userId)){
+            throw new UserException("User with id " + userId + " already exists.");
+        }
+
         User newUserEmp = new User();
-        newUserEmp.setUsername(employeeDto.workerNo().toString());
+        newUserEmp.setId(userId);
+        newUserEmp.setUsername(employeeDto.workerNo());
         newUserEmp.setPassword(PasswordUserGenerator.generateFromName(employeeDto.fullName()));
         newUserEmp.setCreatedAt(LocalDateTime.now());
         newUserEmp.setUserRoles(Collections.singleton(RoleAssign.resolveRole(employeeDto.department())));
@@ -152,6 +168,7 @@ public class EmployeeService {
         }
     }
 
+    @Transactional
     private void saveEmployee(Employee employee){
         try {
             employeeRepository.save(employee);

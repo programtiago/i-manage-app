@@ -5,15 +5,15 @@ import com.devtiago.i_manage_app.backend.entity.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public record FullEmployeeDto (
-
+public record EmployeeWithoutUserDto (
         @NotBlank(message = "Worker Number is required")
-        //@Min(value = 3000, message = "Worker Number must be at least 3000")
+        //@Min(value = 30000, message = "Worker Number must be at least 30000")
         //@Max(value = 100000, message = "Worker Number must be at most 100000")
         String workerNo,
         @NotBlank(message = "Full name is required")
@@ -34,15 +34,14 @@ public record FullEmployeeDto (
         @Length(min = 10, max = 50, message = "Department should be between 10 and 50 characters.")
         String department,
         @NotNull
+        @Past
         LocalDate birthdayDate,
-        int age,
         @NotBlank(message = "Genre is required.")
-        String genre,
+        String gender,
         Status status,
         @NotNull(message = "AdmissionDate is required")
         LocalDate admissionDate,
         @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-        LocalDateTime registryDate,
-        UserDto user
-){
+        LocalDateTime registryDate
+) {
 }

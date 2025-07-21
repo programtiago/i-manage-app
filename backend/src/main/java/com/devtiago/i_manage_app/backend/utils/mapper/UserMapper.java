@@ -21,13 +21,13 @@ public class UserMapper {
     public UserDto toDto(User user){
         if (user == null) return null;
 
-        return new UserDto(user.getUsername(), user.getPassword(), user.getCreatedAt(), user.getUpdatedAt(), user.getUserRoles());
+        return new UserDto(user.getId(), user.getUsername(), user.getPassword(), user.getCreatedAt(), user.getUpdatedAt(), user.getUserRoles());
     }
 
     public UserDto newUser(User user){
         if (user == null) return null;
 
-        return new UserDto(user.getUsername(), user.getPassword(), LocalDateTime.now(), user.getUpdatedAt(), user.getUserRoles());
+        return new UserDto(user.getId(), user.getUsername(), user.getPassword(), LocalDateTime.now(), user.getUpdatedAt(), user.getUserRoles());
     }
 
     public List<UserDto> toListDto(List<User> users){

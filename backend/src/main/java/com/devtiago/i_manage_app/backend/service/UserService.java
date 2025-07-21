@@ -24,18 +24,17 @@ public class UserService {
         return userMapper.toListDto(users);
     }
 
-    /*
-    public UserDto findByWorkerNo(String workerNo){
-        User user = userRepository.findById().orElseThrow(() -> new UserException("User not found with worker number " + workerNo));
-
-        return userMapper.toDto(user);
-    }
-     */
-
     public UserDto update(UserDto user, String username){
-        User existingUser = userRepository.findByUsername(username).orElseThrow(() -> new UserException("User not found with the username " + username));
+        User existingUser = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UserException("User not found with the username " + username));
 
-        existingUser.setUsername(user.username());
+        if (!existingUser.getUsername().equals(user.username())) {
+            if (userRepository.existsByUsername(user.username())) {
+                throw new UserException("Username " + user.username() + " is already in use.");
+            }
+            existingUser.setUsername(user.username());
+        }
+
         existingUser.setPassword(user.password());
         existingUser.setUserRoles(user.userRoles());
         existingUser.setUpdatedAt(LocalDateTime.now());

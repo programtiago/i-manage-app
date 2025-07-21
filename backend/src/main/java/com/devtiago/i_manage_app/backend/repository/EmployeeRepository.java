@@ -3,8 +3,11 @@ package com.devtiago.i_manage_app.backend.repository;
 import com.devtiago.i_manage_app.backend.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 public interface EmployeeRepository extends JpaRepository<Employee, String> {
 
+    Optional<Employee> findByWorkerNo(String workerNo);
     boolean existsByWorkerNo(String workerNo);
     boolean existsByPhoneNumber(String phoneNumber);
     boolean existsByEmail(String email);

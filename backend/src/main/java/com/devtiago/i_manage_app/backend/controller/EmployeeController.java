@@ -1,6 +1,7 @@
 package com.devtiago.i_manage_app.backend.controller;
 
 import com.devtiago.i_manage_app.backend.entity.dto.EmployeeDto;
+import com.devtiago.i_manage_app.backend.entity.dto.EmployeeWithoutUserDto;
 import com.devtiago.i_manage_app.backend.entity.dto.FullEmployeeDto;
 import com.devtiago.i_manage_app.backend.service.EmployeeService;
 import jakarta.validation.Valid;

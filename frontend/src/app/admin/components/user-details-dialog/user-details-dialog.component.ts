@@ -42,4 +42,10 @@ export class UserDetailsDialogComponent implements OnInit{
   onCancel(){
     this.dialogRef.close();
   }
+
+  onSave(){
+    if (this.userFormGroup.valid){
+      
+    }
+  }
 }

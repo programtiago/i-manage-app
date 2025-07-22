@@ -120,4 +120,8 @@ export class EmployeeFormComponent implements OnInit{
       }
     })
   }
+
+  deactivateEmployee(){
+    
+  }
 }
